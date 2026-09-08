@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="www.plotaroute.com" version="1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<desc>Route created on plotaroute.com</desc>
+</metadata>
+<rte>
+<name>from_saltaire</name>
+<rtept lat="53.838383" lon="-1.789569">
+<ele>77</ele>
+<time>2026-09-08T00:00:00Z</time>
+<name>Start on </name>
+<cmt>Start on </cmt>
+<desc>Start on </desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.839528" lon="-1.789292">
+<ele>69</ele>
+<time>2026-09-08T00:01:39Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.839577" lon="-1.78968">
+<ele>69</ele>
+<time>2026-09-08T00:01:58Z</time>
+<name>Keep right</name>
+<cmt>Keep right</cmt>
+<desc>Keep right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.839591" lon="-1.789709">
+<ele>68</ele>
+<time>2026-09-08T00:02:00Z</time>
+<name>Keep right</name>
+<cmt>Keep right</cmt>
+<desc>Keep right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.840598" lon="-1.789371">
+<ele>67</ele>
+<time>2026-09-08T00:03:43Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.840563" lon="-1.789017">
+<ele>67</ele>
+<time>2026-09-08T00:04:08Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.841135" lon="-1.788828">
+<ele>69</ele>
+<time>2026-09-08T00:05:16Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Coach Road</cmt>
+<desc>Turn left onto Coach Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.841366" lon="-1.789026">
+<ele>70</ele>
+<time>2026-09-08T00:05:42Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Thompson Lane</cmt>
+<desc>Turn right onto Thompson Lane</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.842943" lon="-1.782706">
+<ele>79</ele>
+<time>2026-09-08T00:14:09Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight left</cmt>
+<desc>Turn slight left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.843064" lon="-1.781884">
+<ele>82</ele>
+<time>2026-09-08T00:15:16Z</time>
+<name>Keep left</name>
+<cmt>Keep left</cmt>
+<desc>Keep left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.84346" lon="-1.780387">
+<ele>88</ele>
+<time>2026-09-08T00:17:30Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.843417" lon="-1.780349">
+<ele>88</ele>
+<time>2026-09-08T00:17:38Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Green Road</cmt>
+<desc>Turn left onto Green Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.849179" lon="-1.767396">
+<ele>114</ele>
+<time>2026-09-08T00:38:03Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Baildon Road</cmt>
+<desc>Turn right onto Baildon Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.849086" lon="-1.767298">
+<ele>114</ele>
+<time>2026-09-08T00:38:12Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.849086" lon="-1.767298">
+<ele>114</ele>
+<time>2026-09-08T00:38:20Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp left onto Baildon Road</cmt>
+<desc>Turn sharp left onto Baildon Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.848368" lon="-1.766556">
+<ele>114</ele>
+<time>2026-09-08T00:39:44Z</time>
+<name>FINISH</name>
+<cmt>FINISH</cmt>
+<desc>FINISH</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+</rte>
+</gpx>

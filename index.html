@@ -314,7 +314,7 @@
   // Suggested next walk: steps one along the rota each time she opens the
   // page, so it isn't the same walk all week. Falls back to the day index if
   // localStorage isn't available (private browsing, etc).
-  const rota = ["village","bank","glen","dell","trig","saltaire","canal","tongpark"];
+  const rota = ["village","dell","canal","glen","trig","canalfull","glenhome","saltaire"];
   let turn;
   try {
     turn = (parseInt(localStorage.getItem("woody-walk-turn"), 10) || 0) + 1;
@@ -341,6 +341,7 @@
         <div class="lab">From home</div><p>${esc(w.fromHome)}</p>
         <div class="lab">The walk</div><p>${esc(w.detail)}</p>
         <div class="lab">Woody</div><p>${esc(w.woody)}</p>
+        ${w.back ? `<div class="lab">Getting back</div><p><strong>${esc(w.back.time)}.</strong> ${esc(w.back.detail)}</p>` : ""}
         ${w.parking ? `<div class="lab">Driving</div><p>${esc(w.parking)}</p>` : ""}
         <button class="btn" data-goto-map="${w.id}">See it on the map</button>
         <a class="btn" href="${gm}" target="_blank" rel="noopener">Directions to the start</a>
@@ -472,6 +473,11 @@
         L.polyline(pts, { color: ink, weight: 2.4, opacity: .9, dashArray: "7 5", lineCap:"round", lineJoin:"round" }).addTo(g).bindPopup(pop);
         L.marker(w.route[0], { icon: roughDot(colour) }).addTo(g).bindPopup(pop);
         L.marker(w.route[w.route.length-1], { icon: roughPin(colour, "E") }).addTo(g).bindPopup(pop);
+        if (w.back && w.back.route && w.back.route.length > 1){
+          L.polyline(wobble(w.back.route, i + 31), { color: colour, weight: 2, opacity: .55,
+            dashArray: "2 7", lineCap: "round" }).addTo(g)
+            .bindPopup(`<h3>The way back</h3>${esc(w.back.time)}`);
+        }
       } else {
         const dm = L.marker(w.route[0], { icon: roughPin(colour, "D") }).addTo(g).bindPopup(pop)
           .bindTooltip(w.name, { permanent:true, direction:"right", offset:[8,-14], className:"lab-tip lab-far" });

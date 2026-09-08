@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="www.plotaroute.com" version="1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<desc>Route created on plotaroute.com</desc>
+</metadata>
+<rte>
+<name>home from station</name>
+<rtept lat="53.850172" lon="-1.753826">
+<ele>87</ele>
+<time>2026-09-08T00:00:00Z</time>
+<name>Start on </name>
+<cmt>Start on </cmt>
+<desc>Start on </desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.850216" lon="-1.753865">
+<ele>88</ele>
+<time>2026-09-08T00:01:14Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.850209" lon="-1.754448">
+<ele>91</ele>
+<time>2026-09-08T00:02:06Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight right onto Ridgewood Close</cmt>
+<desc>Turn slight right onto Ridgewood Close</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.850391" lon="-1.755131">
+<ele>95</ele>
+<time>2026-09-08T00:03:15Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Station Road</cmt>
+<desc>Turn left onto Station Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.849179" lon="-1.767396">
+<ele>114</ele>
+<time>2026-09-08T00:18:29Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp left onto Baildon Road</cmt>
+<desc>Turn sharp left onto Baildon Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.848415" lon="-1.766605">
+<ele>114</ele>
+<time>2026-09-08T00:20:00Z</time>
+<name>FINISH</name>
+<cmt>FINISH</cmt>
+<desc>FINISH</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+</rte>
+</gpx>

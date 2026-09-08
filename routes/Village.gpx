@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="www.plotaroute.com" version="1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<desc>Route created on plotaroute.com</desc>
+</metadata>
+<rte>
+<name>Village</name>
+<rtept lat="53.848379" lon="-1.766568">
+<ele>114</ele>
+<time>2026-09-08T00:00:00Z</time>
+<name>Start on B</name>
+<cmt>Start on Baildon Road</cmt>
+<desc>Start on Baildon Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.85037" lon="-1.767857">
+<ele>124</ele>
+<time>2026-09-08T00:04:47Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp left onto Green Road</cmt>
+<desc>Turn sharp left onto Green Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.850262" lon="-1.768517">
+<ele>126</ele>
+<time>2026-09-08T00:06:10Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp left</cmt>
+<desc>Turn sharp left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.85028" lon="-1.768576">
+<ele>126</ele>
+<time>2026-09-08T00:06:16Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight left</cmt>
+<desc>Turn slight left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.849592" lon="-1.769566">
+<ele>135</ele>
+<time>2026-09-08T00:08:39Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp right onto Lane End</cmt>
+<desc>Turn sharp right onto Lane End</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.850158" lon="-1.769502">
+<ele>140</ele>
+<time>2026-09-08T00:10:12Z</time>
+<name>Keep left</name>
+<cmt>Keep left</cmt>
+<desc>Keep left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.851453" lon="-1.768094">
+<ele>161</ele>
+<time>2026-09-08T00:15:06Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Bank Walk</cmt>
+<desc>Turn left onto Bank Walk</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.851483" lon="-1.768107">
+<ele>161</ele>
+<time>2026-09-08T00:15:12Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp left</cmt>
+<desc>Turn sharp left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.851483" lon="-1.768107">
+<ele>161</ele>
+<time>2026-09-08T00:15:20Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Bank Walk</cmt>
+<desc>Turn left onto Bank Walk</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.852556" lon="-1.767858">
+<ele>163</ele>
+<time>2026-09-08T00:17:41Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Westgate</cmt>
+<desc>Turn right onto Westgate</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.853264" lon="-1.766161">
+<ele>156</ele>
+<time>2026-09-08T00:19:34Z</time>
+<name>At roundab</name>
+<cmt>At roundabout, take exit 1 onto Newton Way</cmt>
+<desc>At roundabout, take exit 1 onto Newton Way</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.853447" lon="-1.76642">
+<ele>157</ele>
+<time>2026-09-08T00:20:01Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.853633" lon="-1.76642">
+<ele>157</ele>
+<time>2026-09-08T00:20:20Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.853634" lon="-1.76625">
+<ele>157</ele>
+<time>2026-09-08T00:20:30Z</time>
+<name>FINISH</name>
+<cmt>FINISH</cmt>
+<desc>FINISH</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+</rte>
+</gpx>

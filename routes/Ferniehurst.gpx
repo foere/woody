@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="www.plotaroute.com" version="1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<desc>Route created on plotaroute.com</desc>
+</metadata>
+<rte>
+<name>Ferniehurst</name>
+<rtept lat="53.849179" lon="-1.767396">
+<ele>114</ele>
+<time>2026-09-08T00:01:40Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Cliffe Avenue</cmt>
+<desc>Turn left onto Cliffe Avenue</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.847675" lon="-1.770061">
+<ele>124</ele>
+<time>2026-09-08T00:06:25Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.84786" lon="-1.770709">
+<ele>125</ele>
+<time>2026-09-08T00:07:07Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.847066" lon="-1.771181">
+<ele>124</ele>
+<time>2026-09-08T00:08:37Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.846921" lon="-1.771199">
+<ele>124</ele>
+<time>2026-09-08T00:08:57Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.846823" lon="-1.770948">
+<ele>124</ele>
+<time>2026-09-08T00:09:14Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Cliffe Avenue</cmt>
+<desc>Turn right onto Cliffe Avenue</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.846698" lon="-1.771081">
+<ele>124</ele>
+<time>2026-09-08T00:09:36Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.846333" lon="-1.770283">
+<ele>130</ele>
+<time>2026-09-08T00:11:07Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Glenholm Road</cmt>
+<desc>Turn right onto Glenholm Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.845773" lon="-1.770161">
+<ele>128</ele>
+<time>2026-09-08T00:12:11Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Enfield Road</cmt>
+<desc>Turn right onto Enfield Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.84539" lon="-1.771189">
+<ele>125</ele>
+<time>2026-09-08T00:13:15Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Temple Rhydding Drive</cmt>
+<desc>Turn left onto Temple Rhydding Drive</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.845117" lon="-1.770909">
+<ele>123</ele>
+<time>2026-09-08T00:13:42Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.844876" lon="-1.770636">
+<ele>121</ele>
+<time>2026-09-08T00:14:14Z</time>
+<name>Keep right</name>
+<cmt>Keep right</cmt>
+<desc>Keep right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.844325" lon="-1.770365">
+<ele>120</ele>
+<time>2026-09-08T00:15:07Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.844482" lon="-1.769371">
+<ele>119</ele>
+<time>2026-09-08T00:16:06Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight right</cmt>
+<desc>Turn slight right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.844824" lon="-1.766521">
+<ele>106</ele>
+<time>2026-09-08T00:18:24Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.846285" lon="-1.765743">
+<ele>116</ele>
+<time>2026-09-08T00:21:45Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight right onto Maude Avenue</cmt>
+<desc>Turn slight right onto Maude Avenue</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.846671" lon="-1.764939">
+<ele>113</ele>
+<time>2026-09-08T00:22:52Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Baildon Road</cmt>
+<desc>Turn left onto Baildon Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.848382" lon="-1.76657">
+<ele>114</ele>
+<time>2026-09-08T00:26:09Z</time>
+<name>FINISH</name>
+<cmt>FINISH</cmt>
+<desc>FINISH</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+</rte>
+</gpx>

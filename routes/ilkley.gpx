@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="www.plotaroute.com" version="1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<desc>Route created on plotaroute.com</desc>
+</metadata>
+<rte>
+<name>ilkley</name>
+<rtept lat="53.848402" lon="-1.766591">
+<ele>114</ele>
+<time>2026-09-08T00:00:00Z</time>
+<name>Start on B</name>
+<cmt>Start on Baildon Road</cmt>
+<desc>Start on Baildon Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.853262" lon="-1.7661">
+<ele>155</ele>
+<time>2026-09-08T00:14:01Z</time>
+<name>At roundab</name>
+<cmt>At roundabout, take exit 3 onto Northgate</cmt>
+<desc>At roundabout, take exit 3 onto Northgate</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.857056" lon="-1.768549">
+<ele>178</ele>
+<time>2026-09-08T00:24:01Z</time>
+<name>Keep left</name>
+<cmt>Keep left</cmt>
+<desc>Keep left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.858424" lon="-1.770018">
+<ele>189</ele>
+<time>2026-09-08T00:27:56Z</time>
+<name>Keep right</name>
+<cmt>Keep right</cmt>
+<desc>Keep right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.866201" lon="-1.777818">
+<ele>175</ele>
+<time>2026-09-08T00:44:52Z</time>
+<name>Keep right</name>
+<cmt>Keep right</cmt>
+<desc>Keep right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.866791" lon="-1.777216">
+<ele>175</ele>
+<time>2026-09-08T00:46:27Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Sconce Lane</cmt>
+<desc>Turn left onto Sconce Lane</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.871838" lon="-1.783441">
+<ele>205</ele>
+<time>2026-09-08T01:00:24Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight right onto Sconce Lane</cmt>
+<desc>Turn slight right onto Sconce Lane</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.872831" lon="-1.78457">
+<ele>209</ele>
+<time>2026-09-08T01:03:06Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.873463" lon="-1.784382">
+<ele>206</ele>
+<time>2026-09-08T01:04:06Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.873671" lon="-1.785026">
+<ele>207</ele>
+<time>2026-09-08T01:05:02Z</time>
+<name>Keep left</name>
+<cmt>Keep left</cmt>
+<desc>Keep left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.8766" lon="-1.794538">
+<ele>253</ele>
+<time>2026-09-08T01:22:24Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Otley Road</cmt>
+<desc>Turn right onto Otley Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.877965" lon="-1.792012">
+<ele>252</ele>
+<time>2026-09-08T01:25:58Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.885913" lon="-1.800521">
+<ele>315</ele>
+<time>2026-09-08T01:49:17Z</time>
+<name>Keep left</name>
+<cmt>Keep left</cmt>
+<desc>Keep left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.894783" lon="-1.807431">
+<ele>349</ele>
+<time>2026-09-08T02:10:21Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight right</cmt>
+<desc>Turn slight right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.902209" lon="-1.811011">
+<ele>380</ele>
+<time>2026-09-08T02:27:45Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.902209" lon="-1.811011">
+<ele>380</ele>
+<time>2026-09-08T02:27:53Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp left</cmt>
+<desc>Turn sharp left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.908479" lon="-1.812797">
+<ele>341</ele>
+<time>2026-09-08T02:37:12Z</time>
+<name>Keep left</name>
+<cmt>Keep left</cmt>
+<desc>Keep left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.908779" lon="-1.812996">
+<ele>339</ele>
+<time>2026-09-08T02:37:41Z</time>
+<name>Keep left</name>
+<cmt>Keep left</cmt>
+<desc>Keep left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.909321" lon="-1.813527">
+<ele>340</ele>
+<time>2026-09-08T02:38:43Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight right</cmt>
+<desc>Turn slight right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.910097" lon="-1.813937">
+<ele>342</ele>
+<time>2026-09-08T02:40:20Z</time>
+<name>Keep left</name>
+<cmt>Keep left</cmt>
+<desc>Keep left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.913629" lon="-1.820198">
+<ele>298</ele>
+<time>2026-09-08T02:50:38Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight right</cmt>
+<desc>Turn slight right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.915125" lon="-1.821675">
+<ele>265</ele>
+<time>2026-09-08T02:55:01Z</time>
+<name>Keep right</name>
+<cmt>Keep right</cmt>
+<desc>Keep right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.916382" lon="-1.821681">
+<ele>223</ele>
+<time>2026-09-08T02:59:17Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.916319" lon="-1.821407">
+<ele>223</ele>
+<time>2026-09-08T02:59:41Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp left</cmt>
+<desc>Turn sharp left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.920253" lon="-1.82184">
+<ele>140</ele>
+<time>2026-09-08T03:10:00Z</time>
+<name>Keep right</name>
+<cmt>Keep right</cmt>
+<desc>Keep right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.920381" lon="-1.821794">
+<ele>139</ele>
+<time>2026-09-08T03:10:09Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.920753" lon="-1.822348">
+<ele>135</ele>
+<time>2026-09-08T03:10:49Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Wells Road</cmt>
+<desc>Turn right onto Wells Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.923931" lon="-1.8226">
+<ele>98</ele>
+<time>2026-09-08T03:15:39Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Whitton Croft Road</cmt>
+<desc>Turn right onto Whitton Croft Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.923979" lon="-1.82198">
+<ele>99</ele>
+<time>2026-09-08T03:16:12Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.924206" lon="-1.822013">
+<ele>97</ele>
+<time>2026-09-08T03:16:33Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.92443" lon="-1.821787">
+<ele>96</ele>
+<time>2026-09-08T03:17:02Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Station Road</cmt>
+<desc>Turn right onto Station Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.924395" lon="-1.821397">
+<ele>96</ele>
+<time>2026-09-08T03:17:25Z</time>
+<name>FINISH</name>
+<cmt>FINISH</cmt>
+<desc>FINISH</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+</rte>
+</gpx>

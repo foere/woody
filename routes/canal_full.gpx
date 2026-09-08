@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="www.plotaroute.com" version="1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<desc>Route created on plotaroute.com</desc>
+</metadata>
+<rte>
+<name>canal_full</name>
+<rtept lat="53.843476" lon="-1.802029">
+<ele>71</ele>
+<time>2026-09-08T00:00:00Z</time>
+<name>Start on </name>
+<cmt>Start on </cmt>
+<desc>Start on </desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.843558" lon="-1.802703">
+<ele>73</ele>
+<time>2026-09-08T00:00:39Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp left</cmt>
+<desc>Turn sharp left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.840358" lon="-1.816214">
+<ele>71</ele>
+<time>2026-09-08T00:18:21Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.839526" lon="-1.789696">
+<ele>69</ele>
+<time>2026-09-08T00:45:26Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.839577" lon="-1.78968">
+<ele>69</ele>
+<time>2026-09-08T00:45:31Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.839591" lon="-1.789709">
+<ele>68</ele>
+<time>2026-09-08T00:45:34Z</time>
+<name>Keep right</name>
+<cmt>Keep right</cmt>
+<desc>Keep right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.840407" lon="-1.789515">
+<ele>66</ele>
+<time>2026-09-08T00:46:53Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp left</cmt>
+<desc>Turn sharp left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.840678" lon="-1.793505">
+<ele>65</ele>
+<time>2026-09-08T00:51:22Z</time>
+<name>Turn left</name>
+<cmt>Turn left</cmt>
+<desc>Turn left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.841412" lon="-1.800459">
+<ele>65</ele>
+<time>2026-09-08T00:58:35Z</time>
+<name>Keep right</name>
+<cmt>Keep right</cmt>
+<desc>Keep right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.841872" lon="-1.802726">
+<ele>65</ele>
+<time>2026-09-08T01:01:01Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp right</cmt>
+<desc>Turn sharp right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.843558" lon="-1.802703">
+<ele>73</ele>
+<time>2026-09-08T01:04:42Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp right onto Higher Coach Road</cmt>
+<desc>Turn sharp right onto Higher Coach Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.843475" lon="-1.802016">
+<ele>71</ele>
+<time>2026-09-08T01:05:28Z</time>
+<name>FINISH</name>
+<cmt>FINISH</cmt>
+<desc>FINISH</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+</rte>
+</gpx>

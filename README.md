@@ -20,9 +20,10 @@ Everything editable is in `data.js`, top to bottom:
 - `home` - currently set to Lane End as a placeholder. Put the house's coordinates in (right-click the house in Google Maps, the numbers at the top of the menu are lat, lng).
 - `contacts` - your and Steph's numbers and Steph's parents' are blank. Fill them in or leave blank; blank ones don't show.
 - `MESSAGES` - one per day, in your voice not mine. Rewrite them.
-- `WALKS` - if a route looks wrong on the map, draw it yourself and import it:
-  see `routes/README.md`. That's the reliable fix, because the routes in here
-  are the computer's choice of footpath, not yours.
+- `WALKS` - the nine local walks are your own plotaroute routes, in `routes/`.
+  To change one, redraw it, drop the GPX in there and see `routes/README.md`.
+  Two walks (`saltaire`, `ilkley`) carry a `back` route as well: that's the way
+  home, drawn on the map dotted, and it never gets suggested as a walk itself.
 - `WALKS` - every walk has a `fromHome` line saying how you get to the start from the house, on foot or in the car. Those times are guesses made off the placeholder `home` above, so once you've moved `home` to the real house, read them through and correct anything that's out. The `route` points are plotted by hand from your descriptions on an OpenStreetMap base, not from AllTrails. Check them on the Map tab; if one strays, edit the numbers (each is `[lat, lng]`). The Cliffe Lane park, Ferniehurst Dell and vets pins are the ones I'm least sure of.
 - `PLACES` - shops, fuel, vet, and the "for you" places. Add or remove freely.
 
