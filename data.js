@@ -111,6 +111,27 @@ const WOODY = [
 // ------------------------------------------------------------
 const WALKS = [
   {
+    id: "block",
+    name: "Round the block",
+    type: "short",
+    time: "20 min, all pavement",
+    from: "Home",
+    fromHome: "Out of the door and left. You're back before the kettle's cold.",
+    summary: "The quick trot: up Green Road, round by Cliffe Avenue and back along Sandals Road.",
+    detail: "The shortest one there is. Left up Baildon Road onto Green Road, round the back streets to Cliffe Avenue, then Glenholm Road and Sandals Road bring you back to the door. For last thing at night, or when it's raining and neither of you can face anything more.",
+    woody: "Lead on, it's all streets.",
+    parking: "No need.",
+    route: [
+      [53.84839,-1.76658],[53.84975,-1.76791],[53.85003,-1.76799],[53.85037,-1.76786],
+      [53.85026,-1.76872],[53.8499,-1.7693],[53.84829,-1.77053],[53.84792,-1.77065],
+      [53.84764,-1.77093],[53.84751,-1.77084],[53.84713,-1.77116],[53.84703,-1.77108],
+      [53.84692,-1.7712],[53.84682,-1.77095],[53.8467,-1.77108],[53.84633,-1.77028],
+      [53.84749,-1.7691],[53.84752,-1.76879],[53.84712,-1.76833],[53.84811,-1.76629],
+      [53.84838,-1.76657]
+    ],
+    end: "Back at the door",
+  },
+  {
     id: "village",
     name: "Up to the village",
     type: "short",
@@ -282,6 +303,38 @@ const WALKS = [
       [53.84347,-1.80202]
     ],
     end: "Back at the car",
+  },
+  {
+    id: "willywood",
+    name: "Willy Wood and Tong Park",
+    type: "long",
+    time: "About 1 hr 30 for the loop, 6.3 km",
+    from: "Home",
+    fromHome: "Starts at the door. Up to the village first, then out east.",
+    summary: "A proper loop out east: up through the village, out to Heygate Lane, down through Willy Wood and back along Station Road.",
+    detail: "Up Northgate and out along East Parade and Heather Road to Jenny Lane, then Heygate Lane takes you to the top of the wood. The path drops through Willy Wood and follows the beck down towards Tong Park, coming out at Hollin Head. Langley Lane and Roundwood Road bring you round to Station Road, which runs all the way back to Baildon Road and home. Flat-ish once you're up, apart from the drop through the wood and the climb out.",
+    woody: "Off the lead in the wood, on it along Jenny Lane and the whole of Station Road.",
+    parking: "Park at Baildon station (free) and pick the loop up from Station Road if you'd rather skip the climb out of the village.",
+    route: [
+      [53.84841,-1.7666],[53.84939,-1.76761],[53.85003,-1.76799],[53.85049,-1.76775],
+      [53.85145,-1.76617],[53.85326,-1.7661],[53.85339,-1.7659],[53.85367,-1.76608],
+      [53.85413,-1.76403],[53.85506,-1.76422],[53.85525,-1.76255],[53.85693,-1.76229],
+      [53.85765,-1.76191],[53.85788,-1.76205],[53.85849,-1.76194],[53.85881,-1.76147],
+      [53.85906,-1.76148],[53.85912,-1.76077],[53.85955,-1.7592],[53.85952,-1.75786],
+      [53.86069,-1.76008],[53.86186,-1.75859],[53.86253,-1.75809],[53.86293,-1.75693],
+      [53.86275,-1.75574],[53.8617,-1.75403],[53.86127,-1.75364],[53.86031,-1.7533],
+      [53.85987,-1.75249],[53.85974,-1.75178],[53.85946,-1.7513],[53.85915,-1.75128],
+      [53.85905,-1.75085],[53.85953,-1.75014],[53.86075,-1.74954],[53.86152,-1.74886],
+      [53.86187,-1.74848],[53.86191,-1.74805],[53.86066,-1.74946],[53.85969,-1.74993],
+      [53.85861,-1.74777],[53.85864,-1.74949],[53.8589,-1.75076],[53.85915,-1.75128],
+      [53.85908,-1.75158],[53.85889,-1.75168],[53.85794,-1.75156],[53.85761,-1.75096],
+      [53.85706,-1.75057],[53.8568,-1.74954],[53.85654,-1.74995],[53.85632,-1.74994],
+      [53.8546,-1.74856],[53.85361,-1.74882],[53.85301,-1.74995],[53.85164,-1.75083],
+      [53.85147,-1.75162],[53.8506,-1.7528],[53.85106,-1.75377],[53.8506,-1.75451],
+      [53.85032,-1.75554],[53.85001,-1.75811],[53.84987,-1.76049],[53.84923,-1.76386],
+      [53.84919,-1.76692],[53.84905,-1.76677],[53.84881,-1.76701],[53.84842,-1.76661]
+    ],
+    end: "Back at the door",
   },
   {
     id: "saltaire",

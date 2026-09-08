@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<gpx xmlns="http://www.topografix.com/GPX/1/1" creator="www.plotaroute.com" version="1.1"  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd">
+<metadata>
+<desc>Route created on plotaroute.com</desc>
+</metadata>
+<rte>
+<name>willy_wood</name>
+<rtept lat="53.848411" lon="-1.766601">
+<ele>114</ele>
+<time>2026-09-08T00:00:00Z</time>
+<name>Start on B</name>
+<cmt>Start on Baildon Road</cmt>
+<desc>Start on Baildon Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.853262" lon="-1.7661">
+<ele>155</ele>
+<time>2026-09-08T00:14:00Z</time>
+<name>At roundab</name>
+<cmt>At roundabout, take exit 3 onto Northgate</cmt>
+<desc>At roundabout, take exit 3 onto Northgate</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.85367" lon="-1.76608">
+<ele>156</ele>
+<time>2026-09-08T00:15:10Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto East Parade</cmt>
+<desc>Turn right onto East Parade</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.854274" lon="-1.764081">
+<ele>163</ele>
+<time>2026-09-08T00:18:21Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight right onto Heather Road</cmt>
+<desc>Turn slight right onto Heather Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.854463" lon="-1.764089">
+<ele>164</ele>
+<time>2026-09-08T00:18:43Z</time>
+<name>Keep right</name>
+<cmt>Keep right onto Heather Road</cmt>
+<desc>Keep right onto Heather Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.855056" lon="-1.764223">
+<ele>166</ele>
+<time>2026-09-08T00:19:53Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Jenny Lane</cmt>
+<desc>Turn right onto Jenny Lane</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.855251" lon="-1.762548">
+<ele>166</ele>
+<time>2026-09-08T00:21:40Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Heygate Lane</cmt>
+<desc>Turn left onto Heygate Lane</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.858508" lon="-1.761931">
+<ele>160</ele>
+<time>2026-09-08T00:26:55Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.858503" lon="-1.761897">
+<ele>159</ele>
+<time>2026-09-08T00:26:56Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight right</cmt>
+<desc>Turn slight right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.859061" lon="-1.761477">
+<ele>147</ele>
+<time>2026-09-08T00:28:18Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.859517" lon="-1.757857">
+<ele>120</ele>
+<time>2026-09-08T00:32:47Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp left</cmt>
+<desc>Turn sharp left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.860686" lon="-1.760078">
+<ele>127</ele>
+<time>2026-09-08T00:36:01Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp right</cmt>
+<desc>Turn sharp right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.862926" lon="-1.756926">
+<ele>100</ele>
+<time>2026-09-08T00:40:11Z</time>
+<name>Keep right</name>
+<cmt>Keep right</cmt>
+<desc>Keep right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.859146" lon="-1.751279">
+<ele>79</ele>
+<time>2026-09-08T00:48:41Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight right</cmt>
+<desc>Turn slight right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.856044" lon="-1.749702">
+<ele>109</ele>
+<time>2026-09-08T00:59:03Z</time>
+<name>Keep left</name>
+<cmt>Keep left</cmt>
+<desc>Keep left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.8546" lon="-1.748565">
+<ele>105</ele>
+<time>2026-09-08T01:01:35Z</time>
+<name>Turn sligh</name>
+<cmt>Turn slight right onto Hollin Head</cmt>
+<desc>Turn slight right onto Hollin Head</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.853005" lon="-1.749954">
+<ele>103</ele>
+<time>2026-09-08T01:04:33Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Langley Lane</cmt>
+<desc>Turn left onto Langley Lane</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.85164" lon="-1.750827">
+<ele>90</ele>
+<time>2026-09-08T01:06:38Z</time>
+<name>Turn right</name>
+<cmt>Turn right onto Roundwood Road</cmt>
+<desc>Turn right onto Roundwood Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.851474" lon="-1.75162">
+<ele>92</ele>
+<time>2026-09-08T01:07:38Z</time>
+<name>Keep left </name>
+<cmt>Keep left onto Grange Park</cmt>
+<desc>Keep left onto Grange Park</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.850603" lon="-1.7528">
+<ele>89</ele>
+<time>2026-09-08T01:09:38Z</time>
+<name>Turn right</name>
+<cmt>Turn right</cmt>
+<desc>Turn right</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.851055" lon="-1.75377">
+<ele>98</ele>
+<time>2026-09-08T01:11:40Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Roundwood Road</cmt>
+<desc>Turn left onto Roundwood Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.849191" lon="-1.766686">
+<ele>110</ele>
+<time>2026-09-08T01:27:16Z</time>
+<name>Keep right</name>
+<cmt>Keep right onto Station Road</cmt>
+<desc>Keep right onto Station Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.849191" lon="-1.766686">
+<ele>110</ele>
+<time>2026-09-08T01:27:23Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp right onto Station Road</cmt>
+<desc>Turn sharp right onto Station Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.849193" lon="-1.766917">
+<ele>111</ele>
+<time>2026-09-08T01:27:42Z</time>
+<name>Turn sharp</name>
+<cmt>Turn sharp left</cmt>
+<desc>Turn sharp left</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.848808" lon="-1.767008">
+<ele>115</ele>
+<time>2026-09-08T01:28:47Z</time>
+<name>Turn left </name>
+<cmt>Turn left onto Baildon Road</cmt>
+<desc>Turn left onto Baildon Road</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+<rtept lat="53.848425" lon="-1.766614">
+<ele>114</ele>
+<time>2026-09-08T01:29:37Z</time>
+<name>FINISH</name>
+<cmt>FINISH</cmt>
+<desc>FINISH</desc>
+<sym>Flag, Blue</sym>
+</rtept>
+</rte>
+</gpx>
