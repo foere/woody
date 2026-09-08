@@ -3,9 +3,11 @@
 //  Edit this file only. index.html does not need touching.
 //  Coordinates are [latitude, longitude].
 //
-//  Out of the front door: anything north is a right turn, anything south
-//  is a left. Don't take the first turn in a GPX for the one at the door:
-//  plotaroute's first instruction is the junction at the top of the road.
+//  Out of the front door it is a right turn for every walk: the house sits
+//  on the south side and they all head up Baildon Road first. The ones that
+//  end up going south turn left later, at Cliffe Avenue. Don't read a GPX's
+//  first instruction, or its first hundred metres, as the step out of the
+//  door: both are already past the junction at the top of the road.
 //
 //  Every coordinate below comes from OpenStreetMap, and the walk
 //  routes are real footpath routing, not drawn by hand. If you move a
@@ -163,12 +165,13 @@ const WALKS = [
     type: "short",
     time: "25 min, all pavement",
     from: "Home",
-    fromHome: "Left out of the door, then along and into Cliffe Avenue.",
+    fromHome: "Right out of the door and up Baildon Road, then the first left into Cliffe Avenue.",
     summary: "The quick one for a wet evening or a last wee. A loop round the streets and back.",
     detail: "All pavement and no hills to speak of. Down Cliffe Avenue, round Glenholm Road and Enfield Road, along Temple Rhydding Drive, then back up Maude Avenue onto Baildon Road and home. Nothing to it, which is the point when it's dark and raining.",
     woody: "Short lead the whole way, it's all streets.",
     parking: "No need.",
     route: [
+      [53.84855,-1.76674],[53.84881,-1.76701],[53.84903,-1.76724],[53.84909,-1.7673],
       [53.84918,-1.7674],[53.84824,-1.76934],[53.84768,-1.77006],[53.84786,-1.77071],
       [53.84764,-1.77093],[53.84751,-1.77084],[53.84692,-1.7712],[53.84682,-1.77095],
       [53.8467,-1.77108],[53.84633,-1.77028],[53.84607,-1.77046],[53.84577,-1.77016],
@@ -203,7 +206,7 @@ const WALKS = [
     type: "long",
     time: "About two hours, 9.8 km",
     from: "Home",
-    fromHome: "Left out of the door, and no car at either end.",
+    fromHome: "Right out of the door, then left into Cliffe Avenue. No car at either end.",
     summary: "The big local one: out along the top to Shipley Glen and back the same way.",
     detail: "Down Cliffe Avenue and onto Green Road, which runs west along the top of the bank with the crags below you and keeps going most of the way there. Prod Lane drops you in at Bracken Hall Green and the Glen. Loop round the rocks, then turn and come back the way you came. It's a long one and it's a proper walk, so pick a decent day and take water for both of you.",
     woody: "Short lead. Off it along the top and at the Glen, back on for the roads at either end.",
@@ -356,7 +359,7 @@ const WALKS = [
     type: "long",
     time: "About 50 min there, 4.9 km",
     from: "Home",
-    fromHome: "Left out of the door. Don't take the car: you finish in Saltaire.",
+    fromHome: "Right out of the door, then left into Cliffe Avenue. Don't take the car: you finish in Saltaire.",
     summary: "Out along the top of the bank, down to the river and over into Saltaire.",
     detail: "Down Cliffe Avenue onto Green Road and west along the top, the same start as the Glen walk. Then the path drops to Higher Coach Road, over the river, and into Saltaire on Victoria Road. Salts Mill, the bookshop, the cafes and Roberts Park are all right there when you arrive.",
     woody: "Short lead. Off it along the top, back on from the river onwards.",

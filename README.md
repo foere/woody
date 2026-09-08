@@ -33,7 +33,11 @@ The PIN is a deterrent, not security: don't put the alarm code or WiFi password 
 
 - Today: her message for the day, anything happening today, a suggested walk (it moves on one every time she opens the page, so she isn't shown the same one all week), and tap-to-call numbers.
 - Walks: nine local walks and five days out, filterable, each with directions to the start.
-- Map: hand-drawn style map with the routes, start and end points, and places. Toggle layers at the top.
+- Map: hand-drawn style map of the places: shops and vet, treats, and the
+  landmarks the walks pass. Toggle those at the top. Walks aren't drawn on it
+  by default (eleven routes at once was a thicket of start pins); pick one in
+  the Walks tab and "See it on the map" puts that one on, with Back to clear.
+  "Days out" swaps to the day trips on their own.
 - Woody: the house-specific bits from the user guide, nothing else.
 - Week: day by day, with today highlighted, plus the every-day routine.
 

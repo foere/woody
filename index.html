@@ -208,7 +208,7 @@
 <!-- ============ WALKS ============ -->
 <section class="page" id="walks-page">
   <h1>Walks</h1>
-  <p>Tap one to read it. Every walk says where to park if you'd rather drive to the start.</p>
+  <p>Tap one to read it, then "See it on the map" to put just that walk on the map. Every walk says where to park if you'd rather drive to the start.</p>
   <div class="picker" id="picker">
     <div class="tag">Not sure?</div>
     <h3 id="pick-q">I fancy a day out</h3>
@@ -230,15 +230,14 @@
 <section class="page" id="map-page">
   <div style="position:relative">
     <div class="maptools">
-      <button class="chip on" data-layer="walks">Walks</button>
       <button class="chip on" data-layer="need">Shops &amp; vet</button>
       <button class="chip on" data-layer="nice">For you</button>
       <button class="chip on" data-layer="land">Landmarks</button>
       <button class="chip" id="zoom-out">Days out</button>
       <button class="chip" id="zoom-home">Home</button>
-      <button class="chip" id="clear-focus" hidden>Show all</button>
+      <button class="chip" id="clear-focus" hidden>Back</button>
     </div>
-    <div id="map" role="application" aria-label="Sketch map of Baildon with walks and places"></div>
+    <div id="map" role="application" aria-label="Sketch map of Baildon"></div>
   </div>
 </section>
 
@@ -623,7 +622,7 @@
   function buildMap(){
     map = L.map("map", { zoomControl:true, attributionControl:true }).setView(CONFIG.home, 14);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom:18, attribution:"&copy; OpenStreetMap" }).addTo(map);
-    layers.walks = L.layerGroup().addTo(map);
+    layers.walks = L.layerGroup();   // off the map until a walk is chosen
     layers.need = L.layerGroup().addTo(map);
     layers.nice = L.layerGroup().addTo(map);
     layers.land = L.layerGroup().addTo(map);
@@ -676,7 +675,8 @@
         let show = far ? z >= 7 : z >= 14;
         if (focused === "days") show = show && ref.kind === "walk";
         else if (focused) show = show && ref.kind === "walk" && ref.id === focused;
-        else if (ref.kind === "place") show = show && map.hasLayer(layers[ref.id]);
+        // Nothing focused: the routes are off the map, so their names go too.
+        else show = show && ref.kind === "place" && map.hasLayer(layers[ref.id]);
         el.style.display = show ? "" : "none";
       });
     };
@@ -727,7 +727,7 @@
     map.on("zoomend moveend", relabel); relabel();
 
     $$(".maptools .chip[data-layer]").forEach(c => c.addEventListener("click", () => {
-      if (focused) { setFocus(null); if (c.dataset.layer !== "walks") return; }
+      if (focused) setFocus(null);
       const on = c.classList.toggle("on"); const l = layers[c.dataset.layer];
       on ? l.addTo(map) : map.removeLayer(l);
       syncLabels(); staggerLabels();
@@ -747,18 +747,16 @@
   function setFocus(id){
     focused = id;
     const days = id === "days";
-    // Every route and day-out pin lives inside layers.walks, so nothing can be
-    // focused while that layer is switched off.
-    if (id && !map.hasLayer(layers.walks)){
-      layers.walks.addTo(map);
-      $('.maptools .chip[data-layer="walks"]').classList.add("on");
-    }
+    // Every route and day-out pin lives inside layers.walks, which is off the
+    // map until something is focused.
+    if (id && !map.hasLayer(layers.walks)) layers.walks.addTo(map);
     Object.keys(walkLayers).forEach(wid => {
       const g = walkLayers[wid];
       const w = WALKS.find(x => x.id === wid);
       const on = !id || (days ? w && w.type === "drive" : wid === id);
       if (on) layers.walks.addLayer(g); else layers.walks.removeLayer(g);
     });
+    if (!id && map.hasLayer(layers.walks)) map.removeLayer(layers.walks);
     ["need","nice","land"].forEach(k => {
       const chip = $('.maptools .chip[data-layer="' + k + '"]');
       if (id){ if (map.hasLayer(layers[k])) map.removeLayer(layers[k]); chip.classList.remove("on"); }
