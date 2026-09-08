@@ -522,22 +522,21 @@
                              a.top  < b.bottom + 1 && b.top  < a.bottom + 1;
       const placed = [];
       boxes.forEach(b => {
-        const h = b.r.height, w = b.r.width;
-        let best = 0;
-        for (let step = 0; step <= 7; step++){
-          // 0, +h, -h, +2h, -2h, ... so a label never drifts far from its dot
-          const shift = (step === 0) ? 0
-            : (step % 2 ? 1 : -1) * Math.ceil(step / 2) * (h - 3);
+        const h = b.r.height, w = b.r.width, lift = h - 3;
+        // One line up or down at most. A label further than that from its own
+        // pin tells you nothing, so anything that still won't fit is dropped
+        // and left to its pin, which stays tappable for the name and details.
+        let put = null;
+        for (const shift of [0, lift, -lift]) {
           const box = { left: b.r.left, right: b.r.left + w,
                         top: b.r.top + shift, bottom: b.r.top + shift + h };
-          if (!placed.some(p => hits(p, box))) { best = shift; break; }
-          best = shift;
+          if (!placed.some(p => hits(p, box))) { put = { shift, box }; break; }
         }
-        if (best) b.el.style.marginTop = best + "px";
-        placed.push({ left: b.r.left, right: b.r.left + w,
-                      top: b.r.top + best, bottom: b.r.top + best + h });
+        if (!put) { b.el.style.display = "none"; return; }
+        if (put.shift) b.el.style.marginTop = put.shift + "px";
+        placed.push(put.box);
       });
-    }
+    };
     const relabel = () => { syncLabels(); staggerLabels(); };
     map.on("zoomend moveend", relabel); relabel();
 
