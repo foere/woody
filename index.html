@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F2EEE4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Woody">
+<title>Woody's week</title>
+<link rel="icon" href="woody.jpg">
+<link rel="apple-touch-icon" href="woody.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Nunito:ital,wght@0,400;0,600;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root{
+    --paper:#F2EEE4;
+    --paper-deep:#E6E0D2;
+    --ink:#2E3136;
+    --ink-soft:#5B5F66;
+    --pencil:#8B8E94;
+    --gorse:#D19A1E;
+    --heather:#7A5C8A;
+    --beck:#4A7C96;
+    --tan:#B0702C;
+    --moss:#5E7D4E;
+    --tab-h:74px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  body{
+    font-family:"Nunito",system-ui,sans-serif;
+    font-size:19px; line-height:1.5;
+    color:var(--ink); background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:calc(var(--tab-h) + env(safe-area-inset-bottom));
+  }
+  body::before{ /* paper grain */
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.55;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2 0 0 0 0 .18 0 0 0 0 .15 0 0 0 .06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  h1,h2,h3{font-family:"Caveat",cursive; font-weight:700; line-height:1.05; margin:0}
+  h1{font-size:46px}
+  h2{font-size:34px}
+  h3{font-size:27px}
+  p{margin:0 0 .8em}
+  a{color:var(--beck)}
+  button{font:inherit; color:inherit; cursor:pointer}
+
+  .page{position:relative; z-index:1; display:none; padding:20px 18px 24px; max-width:640px; margin:0 auto}
+  .page.on{display:block}
+
+  /* ---------- Today ---------- */
+  .hero{position:relative; margin:-4px -18px 18px; padding:0 18px}
+  .hero img{
+    display:block; width:100%; height:240px; object-fit:cover; object-position:50% 60%;
+    border-radius:4px 4px 3px 3px;
+    clip-path:polygon(0 3%,4% 0,9% 2%,15% 0,22% 3%,29% 1%,35% 3%,42% 0,49% 2%,56% 0,63% 3%,70% 1%,77% 3%,84% 0,91% 2%,97% 0,100% 3%,100% 97%,96% 100%,89% 98%,82% 100%,75% 97%,68% 99%,61% 97%,54% 100%,47% 98%,40% 100%,33% 97%,26% 99%,19% 97%,12% 100%,5% 98%,0 100%);
+  }
+  .hero .cap{position:absolute; left:26px; bottom:14px; background:rgba(242,238,228,.92); padding:4px 12px 6px; border-radius:2px; transform:rotate(-1.5deg); font-family:"Caveat",cursive; font-size:26px; font-weight:700}
+  .date{color:var(--ink-soft); font-size:17px; margin-bottom:6px}
+  .note{
+    position:relative; background:#FBF8F0; padding:22px 22px 18px; margin:22px 4px 26px;
+    box-shadow:0 1px 0 rgba(0,0,0,.05), 0 8px 18px -10px rgba(46,49,54,.35);
+    transform:rotate(.6deg); border:1px solid rgba(46,49,54,.08);
+  }
+  .note::before{ /* tape */
+    content:""; position:absolute; top:-12px; left:50%; width:96px; height:26px; transform:translateX(-50%) rotate(-2deg);
+    background:rgba(209,154,30,.28); border-left:1px dashed rgba(255,255,255,.7); border-right:1px dashed rgba(255,255,255,.7);
+  }
+  .note h2{margin-bottom:8px}
+  .note p{font-family:"Caveat",cursive; font-size:27px; line-height:1.25; font-weight:500}
+  .note .from{font-family:"Caveat",cursive; font-size:24px; text-align:right; color:var(--ink-soft); margin:0}
+
+  .card{
+    background:rgba(255,255,255,.55); border:1.5px solid var(--ink); border-radius:14px 12px 15px 11px/11px 15px 12px 14px;
+    padding:16px 18px; margin-bottom:16px;
+  }
+  .card h3{margin-bottom:6px}
+  .card .meta{color:var(--ink-soft); font-size:17px}
+  .row{display:flex; gap:12px; align-items:baseline; padding:8px 0; border-bottom:1px dashed var(--pencil)}
+  .row:last-child{border-bottom:0}
+  .row .t{flex:0 0 118px; font-family:"Caveat",cursive; font-size:24px; font-weight:700; color:var(--tan)}
+  .row.today .t{color:var(--heather)}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; border:2px solid var(--ink); background:var(--paper);
+    border-radius:11px 13px 12px 14px/14px 11px 13px 12px; padding:10px 16px; font-weight:800; font-size:18px; text-decoration:none; color:var(--ink);
+    margin:6px 8px 4px 0;
+  }
+  .btn.fill{background:var(--ink); color:var(--paper)}
+  .btn.big{width:100%; justify-content:center; padding:14px; font-size:20px}
+  .btn:focus-visible,.tab:focus-visible,.chip:focus-visible{outline:3px solid var(--gorse); outline-offset:2px}
+
+  /* ---------- Walks ---------- */
+  .chips{display:flex; gap:8px; flex-wrap:wrap; margin:10px 0 18px}
+  .chip{border:1.5px solid var(--ink); background:transparent; border-radius:20px; padding:6px 14px; font-weight:700; font-size:17px}
+  .chip.on{background:var(--ink); color:var(--paper)}
+  .walk{
+    background:rgba(255,255,255,.5); border:1.5px solid var(--ink); border-radius:12px 15px 11px 14px/14px 11px 15px 12px;
+    margin-bottom:14px; overflow:hidden;
+  }
+  .walk > button{
+    display:block; width:100%; text-align:left; background:none; border:0; padding:14px 16px;
+  }
+  .walk h3{display:flex; justify-content:space-between; gap:10px; align-items:baseline}
+  .walk .time{font-family:"Nunito",sans-serif; font-size:15px; font-weight:800; color:var(--paper); background:var(--tan); padding:2px 9px; border-radius:10px; white-space:nowrap}
+  .walk .time.short{background:var(--moss)}
+  .walk .time.long{background:var(--heather)}
+  .walk .time.drive{background:var(--beck)}
+  .walk .summary{margin:6px 0 0; color:var(--ink-soft); font-size:17px}
+  .walk .more{display:none; padding:0 16px 16px; border-top:1px dashed var(--pencil)}
+  .walk.open .more{display:block; padding-top:12px}
+  .walk .more .lab{font-family:"Caveat",cursive; font-size:24px; font-weight:700; color:var(--tan); margin-top:10px}
+  .suggest{border:2px solid var(--gorse); background:rgba(209,154,30,.12)}
+  .suggest .tag{font-family:"Caveat",cursive; font-size:24px; color:var(--tan); font-weight:700}
+
+  /* ---------- Map ---------- */
+  #map-page{padding:0; max-width:none}
+  #map{height:calc(100vh - var(--tab-h) - env(safe-area-inset-bottom)); width:100%; background:var(--paper)}
+  .leaflet-tile-pane{filter:grayscale(1) contrast(1.25) brightness(1.06); opacity:.62; mix-blend-mode:multiply}
+  .leaflet-container{font-family:"Nunito",sans-serif; background:var(--paper)}
+  .leaflet-control-attribution{font-size:10px; background:rgba(242,238,228,.8)}
+  .leaflet-popup-content-wrapper{background:#FBF8F0; color:var(--ink); border:1.5px solid var(--ink); border-radius:10px 13px 11px 14px; box-shadow:none}
+  .leaflet-popup-tip{background:#FBF8F0; border:1.5px solid var(--ink); border-top:0; border-left:0}
+  .leaflet-popup-content{margin:12px 14px; font-size:16px; line-height:1.4}
+  .leaflet-popup-content h3{font-size:25px; margin-bottom:4px}
+  .leaflet-popup-content .btn{font-size:15px; padding:6px 12px; margin:6px 6px 0 0}
+  .lab-tip{background:none; border:0; box-shadow:none; font-family:"Caveat",cursive; font-size:19px; font-weight:700; color:var(--ink); text-shadow:0 0 4px var(--paper),0 0 6px var(--paper); padding:0}
+  .maptools{position:absolute; z-index:800; top:12px; left:12px; right:12px; display:flex; gap:8px; flex-wrap:wrap; pointer-events:none}
+  .maptools .chip{pointer-events:auto; background:var(--paper)}
+  .maptools .chip.on{background:var(--ink)}
+  .pin{width:30px;height:30px}
+
+  /* ---------- Tabs ---------- */
+  nav{
+    position:fixed; left:0; right:0; bottom:0; z-index:900; height:calc(var(--tab-h) + env(safe-area-inset-bottom));
+    padding-bottom:env(safe-area-inset-bottom);
+    background:var(--paper); border-top:2px solid var(--ink);
+    display:flex; justify-content:space-around;
+  }
+  .tab{flex:1; border:0; background:none; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-size:15px; font-weight:800; color:var(--ink-soft)}
+  .tab svg{width:30px;height:30px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round}
+  .tab.on{color:var(--ink)}
+  .tab.on span{text-decoration:underline wavy var(--gorse) 2px; text-underline-offset:4px}
+
+  /* ---------- Gate ---------- */
+  #gate{position:fixed; inset:0; z-index:2000; background:var(--paper); display:flex; align-items:center; justify-content:center; padding:24px}
+  #gate .box{max-width:360px; width:100%; text-align:center}
+  #gate input{font:inherit; font-size:34px; letter-spacing:12px; text-align:center; width:100%; padding:12px; border:2px solid var(--ink); border-radius:12px; background:#FBF8F0; margin:16px 0 8px}
+  #gate .err{color:var(--tan); min-height:1.5em; font-weight:700}
+  .hidden{display:none !important}
+
+  @media (prefers-reduced-motion:reduce){ *{transition:none !important} }
+  @media (min-width:700px){ .hero img{height:300px} }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="box">
+    <h1>Woody's week</h1>
+    <p>Type the four numbers Sam gave you.</p>
+    <input id="pin" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-label="Four digit code">
+    <div class="err" id="pinerr"></div>
+    <button class="btn fill big" id="pingo">Open</button>
+  </div>
+</div>
+
+<!-- ============ TODAY ============ -->
+<section class="page on" id="today-page">
+  <div class="hero">
+    <img src="woody.jpg" alt="Woody, a wire-haired dachshund, sitting in front of daffodils">
+    <div class="cap">Woody</div>
+  </div>
+  <div class="date" id="today-date"></div>
+  <h1 id="today-greet">Hello Mum</h1>
+
+  <div class="note" id="note">
+    <h2 id="note-title"></h2>
+    <p id="note-body"></p>
+    <p class="from">Sam and Steph x</p>
+  </div>
+
+  <div class="card" id="today-events"></div>
+
+  <div class="card suggest" id="today-walk"></div>
+
+  <div class="card" id="today-contacts">
+    <h3>If you need someone</h3>
+    <div id="contact-btns"></div>
+  </div>
+</section>
+
+<!-- ============ WALKS ============ -->
+<section class="page" id="walks-page">
+  <h1>Walks</h1>
+  <p>Tap one to read it. Every walk says where to park if you'd rather drive to the start.</p>
+  <div class="chips" id="walk-chips">
+    <button class="chip on" data-f="all">All</button>
+    <button class="chip" data-f="short">Short</button>
+    <button class="chip" data-f="medium">Medium</button>
+    <button class="chip" data-f="long">Long</button>
+    <button class="chip" data-f="drive">Day out</button>
+  </div>
+  <div id="walk-list"></div>
+</section>
+
+<!-- ============ MAP ============ -->
+<section class="page" id="map-page">
+  <div style="position:relative">
+    <div class="maptools">
+      <button class="chip on" data-layer="walks">Walks</button>
+      <button class="chip on" data-layer="need">Shops, fuel, vet</button>
+      <button class="chip on" data-layer="nice">For you</button>
+      <button class="chip" id="zoom-out">Day outs</button>
+      <button class="chip" id="zoom-home">Home</button>
+    </div>
+    <div id="map" role="application" aria-label="Sketch map of Baildon with walks and places"></div>
+  </div>
+</section>
+
+<!-- ============ WOODY ============ -->
+<section class="page" id="woody-page">
+  <h1>Woody</h1>
+  <p>You know dogs. This is just the house-specific stuff.</p>
+  <div id="woody-list"></div>
+  <div class="card">
+    <h3>Numbers</h3>
+    <div id="woody-contacts"></div>
+  </div>
+</section>
+
+<!-- ============ WEEK ============ -->
+<section class="page" id="week-page">
+  <h1>The week</h1>
+  <p>The only thing with a fixed time is the cleaners on Wednesday morning. Everything else is whenever suits.</p>
+  <div id="week-list"></div>
+  <div class="card">
+    <h3>Every day</h3>
+    <div id="everyday-list"></div>
+  </div>
+</section>
+
+<nav aria-label="Sections">
+  <button class="tab on" data-page="today"><svg viewBox="0 0 24 24"><path d="M12 3.5c-1.2 2.3-4 3.3-6.5 2.2C4.6 8.4 5.4 11 7.5 12.3 5.2 13 4 15.5 4.6 18c2.3-.6 4.8.5 5.9 2.7 1.1-2.2 3.6-3.3 5.9-2.7.6-2.5-.6-5-2.9-5.7 2.1-1.3 2.9-3.9 2-6.6-2.5 1.1-5.3.1-6.5-2.2z"/></svg><span>Today</span></button>
+  <button class="tab" data-page="walks"><svg viewBox="0 0 24 24"><path d="M4 19.5c3-1 4-3.5 3-6s0-4.5 3-5.5 5-2.5 5-5" stroke-dasharray="2.5 2.5"/><path d="M18 3.5c1.7 0 3 1.3 3 3 0 2.3-3 5.5-3 5.5s-3-3.2-3-5.5c0-1.7 1.3-3 3-3z"/><circle cx="18" cy="6.5" r="1"/></svg><span>Walks</span></button>
+  <button class="tab" data-page="map"><svg viewBox="0 0 24 24"><path d="M3.5 6.5l5.5-2 6 2.5 5.5-2v13l-5.5 2-6-2.5-5.5 2z"/><path d="M9 4.5v13M15 7v13"/></svg><span>Map</span></button>
+  <button class="tab" data-page="woody"><svg viewBox="0 0 24 24"><path d="M4 13c0-2.5 1.5-4 4-4h7c2.5 0 4 1.5 4.5 3.5l.5 3.5H4z"/><path d="M6.5 16v3.5M17 16v3.5M15 9c0-2 1-3.5 2.5-3.5s2 1.5 2 3M4 13c-1 0-1.5-1-1.5-2"/></svg><span>Woody</span></button>
+  <button class="tab" data-page="week"><svg viewBox="0 0 24 24"><path d="M4 6.5h16v13.5H4zM4 10.5h16M8 4v4M16 4v4"/><path d="M8 14.5l2 2 3.5-3.5"/></svg><span>Week</span></button>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="data.js"></script>
+<script>
+(function(){
+  // ---------- helpers ----------
+  const $ = (s, el=document) => el.querySelector(s);
+  const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+  const DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+  const MONTHS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  const iso = d => d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");
+  const parse = s => { const [y,m,d] = s.split("-").map(Number); return new Date(y, m-1, d); };
+  const nice = d => DAYS[d.getDay()]+" "+d.getDate()+" "+MONTHS[d.getMonth()];
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const today = new Date(); today.setHours(0,0,0,0);
+  const todayKey = iso(today);
+  const first = parse(CONFIG.firstDay), last = parse(CONFIG.lastDay);
+  const dayIndex = Math.round((today - first) / 86400000);
+  const inWeek = today >= first && today <= last;
+
+  // ---------- gate ----------
+  const gate = $("#gate");
+  if (localStorage.getItem("woody-pin-ok") === CONFIG.pin) gate.classList.add("hidden");
+  function tryPin(){
+    const v = $("#pin").value.trim();
+    if (v === CONFIG.pin){ localStorage.setItem("woody-pin-ok", v); gate.classList.add("hidden"); }
+    else { $("#pinerr").textContent = "That's not it. Try again, or ring Sam."; $("#pin").value=""; $("#pin").focus(); }
+  }
+  $("#pingo").addEventListener("click", tryPin);
+  $("#pin").addEventListener("keydown", e => { if (e.key === "Enter") tryPin(); });
+  $("#pin").addEventListener("input", e => { if (e.target.value.length === 4) tryPin(); });
+
+  // ---------- contacts ----------
+  function contactHTML(){
+    return CONFIG.contacts.filter(c => c.phone).map(c =>
+      `<a class="btn" href="tel:${esc(c.phone.replace(/\s+/g,''))}">${esc(c.name)}</a>`
+      + (c.note ? `<div class="meta" style="margin:-2px 0 10px 4px">${esc(c.note)}</div>` : "")
+    ).join("");
+  }
+  $("#contact-btns").innerHTML = contactHTML();
+  $("#woody-contacts").innerHTML = contactHTML();
+
+  // ---------- today ----------
+  $("#today-date").textContent = nice(today);
+  const msg = MESSAGES[todayKey] || MESSAGES["default"];
+  $("#note-title").textContent = msg.title;
+  $("#note-body").textContent = msg.body;
+  if (inWeek) {
+    const left = Math.round((last - today)/86400000);
+    $("#today-greet").textContent = dayIndex === 0 ? "Hello Mum" : (left === 0 ? "Last day, Mum" : "Morning, Mum");
+  }
+
+  const evToday = WEEK_EVENTS.filter(e => e.date === todayKey);
+  $("#today-events").innerHTML = `<h3>Today</h3>` + (evToday.length
+    ? evToday.map(e => `<div class="row today"><div class="t">${esc(e.time || "Today")}</div><div>${esc(e.what)}</div></div>`).join("")
+    : `<div class="row today"><div class="t">Nothing booked</div><div>No one's coming and nothing needs doing at a set time. Woody's meals are the only timetable.</div></div>`);
+
+  // suggested walk: rotate through the ones from home or nearby
+  const rota = ["village","bank","glen","trig","saltaire","canal","tongpark"];
+  const suggestId = rota[((dayIndex % rota.length) + rota.length) % rota.length];
+  const sw = WALKS.find(w => w.id === suggestId) || WALKS[0];
+  $("#today-walk").innerHTML = `<div class="tag">Walk for today</div><h3>${esc(sw.name)}</h3><div class="meta">${esc(sw.time)}. Starts from ${esc(sw.from)}.</div><p style="margin-top:8px">${esc(sw.summary)}</p>
+    <button class="btn" data-goto-walk="${sw.id}">Read it</button><button class="btn" data-goto-map="${sw.id}">See it on the map</button>`;
+
+  // ---------- walks ----------
+  const typeLabel = { short:"Short", medium:"Medium", long:"Long", drive:"Day out" };
+  function walkHTML(w){
+    const start = w.route[0];
+    const gm = `https://www.google.com/maps/dir/?api=1&destination=${start[0]},${start[1]}`;
+    return `<article class="walk" id="walk-${w.id}" data-type="${w.type}">
+      <button aria-expanded="false" aria-controls="more-${w.id}">
+        <h3><span>${esc(w.name)}</span><span class="time ${w.type}">${typeLabel[w.type]}</span></h3>
+        <p class="summary">${esc(w.summary)}</p>
+      </button>
+      <div class="more" id="more-${w.id}">
+        <div class="meta"><strong>${esc(w.time)}.</strong> Starts from ${esc(w.from)}${w.end ? ", ends at " + esc(w.end) : ""}.</div>
+        <div class="lab">The walk</div><p>${esc(w.detail)}</p>
+        <div class="lab">Woody</div><p>${esc(w.woody)}</p>
+        ${w.parking ? `<div class="lab">Driving</div><p>${esc(w.parking)}</p>` : ""}
+        <button class="btn" data-goto-map="${w.id}">See it on the map</button>
+        <a class="btn" href="${gm}" target="_blank" rel="noopener">Directions to the start</a>
+      </div></article>`;
+  }
+  $("#walk-list").innerHTML = WALKS.map(walkHTML).join("");
+  $("#walk-list").addEventListener("click", e => {
+    const b = e.target.closest("article.walk > button"); if (!b) return;
+    const art = b.parentElement; const open = art.classList.toggle("open");
+    b.setAttribute("aria-expanded", open);
+  });
+  $("#walk-chips").addEventListener("click", e => {
+    const c = e.target.closest(".chip"); if (!c) return;
+    $$("#walk-chips .chip").forEach(x => x.classList.toggle("on", x === c));
+    const f = c.dataset.f;
+    $$("#walk-list .walk").forEach(a => a.style.display = (f === "all" || a.dataset.type === f) ? "" : "none");
+  });
+
+  // ---------- woody ----------
+  $("#woody-list").innerHTML = WOODY.map(s => `<div class="card"><h3>${esc(s.h)}</h3><p style="margin:0">${esc(s.p)}</p></div>`).join("");
+
+  // ---------- week ----------
+  (function(){
+    const out = [];
+    const end = new Date(last); end.setDate(end.getDate()+1); // include the day they get home
+    for (let d = new Date(first); d <= end; d.setDate(d.getDate()+1)){
+      const k = iso(d); const evs = WEEK_EVENTS.filter(e => e.date === k);
+      const isToday = k === todayKey;
+      out.push(`<div class="card" ${isToday ? 'style="border-color:var(--heather);border-width:2px"' : ""}>
+        <h3>${esc(nice(d))}${isToday ? ' <span style="color:var(--heather)">(today)</span>' : ""}</h3>
+        ${evs.length ? evs.map(e => `<div class="row ${isToday?"today":""}"><div class="t">${esc(e.time || "Any time")}</div><div>${esc(e.what)}</div></div>`).join("")
+                     : `<div class="meta">Nothing booked. Walks, coffee, telly.</div>`}
+      </div>`);
+    }
+    $("#week-list").innerHTML = out.join("");
+    $("#everyday-list").innerHTML = EVERY_DAY.map(e => `<div class="row"><div class="t">${esc(e.time)}</div><div>${esc(e.what)}</div></div>`).join("");
+  })();
+
+  // ---------- tabs ----------
+  let map = null;
+  function show(page){
+    $$(".page").forEach(p => p.classList.toggle("on", p.id === page + "-page"));
+    $$(".tab").forEach(t => t.classList.toggle("on", t.dataset.page === page));
+    window.scrollTo(0,0);
+    if (page === "map"){ if (!map) buildMap(); setTimeout(() => map.invalidateSize(), 50); }
+  }
+  $$(".tab").forEach(t => t.addEventListener("click", () => show(t.dataset.page)));
+  document.addEventListener("click", e => {
+    const w = e.target.closest("[data-goto-walk]");
+    if (w){ show("walks"); const art = $("#walk-"+w.dataset.gotoWalk); if (art){ art.classList.add("open"); art.querySelector("button").setAttribute("aria-expanded","true"); art.scrollIntoView({block:"start"}); } return; }
+    const m = e.target.closest("[data-goto-map]");
+    if (m){ show("map"); setTimeout(() => focusWalk(m.dataset.gotoMap), 80); }
+  });
+
+  // ---------- map ----------
+  const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim();
+  const walkColours = { short:"#5E7D4E", medium:"#B0702C", long:"#7A5C8A", drive:"#4A7C96" };
+  const layers = {}; const walkLayers = {};
+
+  // deterministic wobble so the lines look drawn rather than plotted
+  function wobble(pts, seed){
+    let s = seed; const rnd = () => { s = (s * 9301 + 49297) % 233280; return s / 233280 - .5; };
+    const out = [];
+    for (let i = 0; i < pts.length - 1; i++){
+      const [a1,b1] = pts[i], [a2,b2] = pts[i+1];
+      const steps = 5;
+      for (let k = 0; k < steps; k++){
+        const t = k/steps; const j = (k===0 && i===0) ? 0 : 1;
+        out.push([a1 + (a2-a1)*t + rnd()*0.00022*j, b1 + (b2-b1)*t + rnd()*0.00035*j]);
+      }
+    }
+    out.push(pts[pts.length-1]);
+    return out;
+  }
+  const roughPin = (colour, letter) => L.divIcon({ className:"", iconSize:[30,30], iconAnchor:[15,28], popupAnchor:[0,-26],
+    html:`<svg class="pin" viewBox="0 0 30 30"><path d="M15 28c-4-6-9-9.5-9-15.5A9 9 0 0 1 24 12.3c.2 6.2-5 9.5-9 15.7z" fill="${colour}" stroke="${ink}" stroke-width="1.6" stroke-linejoin="round"/><circle cx="15" cy="12.5" r="4.6" fill="#FBF8F0" stroke="${ink}" stroke-width="1.4"/><text x="15" y="15.6" text-anchor="middle" font-family="Caveat,cursive" font-size="10" font-weight="700" fill="${ink}">${letter}</text></svg>` });
+  const roughDot = (colour) => L.divIcon({ className:"", iconSize:[18,18], iconAnchor:[9,9], popupAnchor:[0,-8],
+    html:`<svg viewBox="0 0 18 18" width="18" height="18"><path d="M9 2.2c3.9-.4 6.9 2.9 6.6 6.6-.3 3.9-3.3 7-7 6.6C4.8 15 2 11.9 2.4 8.4 2.7 5 5.5 2.6 9 2.2z" fill="${colour}" stroke="${ink}" stroke-width="1.6"/></svg>` });
+
+  function buildMap(){
+    map = L.map("map", { zoomControl:true, attributionControl:true }).setView(CONFIG.home, 14);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom:18, attribution:"&copy; OpenStreetMap" }).addTo(map);
+    layers.walks = L.layerGroup().addTo(map);
+    layers.need = L.layerGroup().addTo(map);
+    layers.nice = L.layerGroup().addTo(map);
+
+    L.marker(CONFIG.home, { icon: roughPin("#D19A1E","H"), zIndexOffset:1000 }).addTo(map).bindPopup("<h3>Home</h3>Where the kettle is.");
+
+    WALKS.forEach((w, i) => {
+      const g = L.layerGroup().addTo(layers.walks);
+      const colour = walkColours[w.type];
+      const pop = `<h3>${esc(w.name)}</h3>${esc(w.time)}<br><button class="btn" data-goto-walk="${w.id}">Read it</button>`;
+      if (w.route.length > 1){
+        const pts = wobble(w.route, i + 7);
+        L.polyline(pts, { color: colour, weight: 7, opacity: .18, lineCap:"round", lineJoin:"round" }).addTo(g);
+        L.polyline(pts, { color: ink, weight: 2.4, opacity: .9, dashArray: "7 5", lineCap:"round", lineJoin:"round" }).addTo(g).bindPopup(pop);
+        L.marker(w.route[0], { icon: roughDot(colour) }).addTo(g).bindPopup(pop);
+        L.marker(w.route[w.route.length-1], { icon: roughPin(colour, "E") }).addTo(g).bindPopup(pop);
+      } else {
+        L.marker(w.route[0], { icon: roughPin(colour, "D") }).addTo(g).bindPopup(pop)
+          .bindTooltip(w.name, { permanent:true, direction:"right", offset:[8,-14], className:"lab-tip lab-far" });
+      }
+      walkLayers[w.id] = g;
+    });
+
+    PLACES.forEach(p => {
+      const colour = p.group === "need" ? "#4A7C96" : "#7A5C8A";
+      L.marker(p.at, { icon: roughDot(colour) }).addTo(layers[p.group])
+        .bindPopup(`<h3>${esc(p.name)}</h3>${esc(p.note)}<br><a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=${p.at[0]},${p.at[1]}" target="_blank" rel="noopener">Directions</a>`)
+        .bindTooltip(p.name, { permanent:true, direction:"right", offset:[7,0], className:"lab-tip" });
+    });
+
+    // label density: hide place labels when zoomed out
+    const setLabels = () => {
+      const z = map.getZoom();
+      $$(".lab-tip").forEach(el => { const far = el.classList.contains("lab-far"); el.style.display = (far ? z >= 9 : z >= 14) ? "" : "none"; });
+    };
+    map.on("zoomend", setLabels); setLabels();
+
+    $$(".maptools .chip[data-layer]").forEach(c => c.addEventListener("click", () => {
+      const on = c.classList.toggle("on"); const l = layers[c.dataset.layer];
+      on ? l.addTo(map) : map.removeLayer(l);
+    }));
+    $("#zoom-out").addEventListener("click", () => {
+      const b = L.latLngBounds(WALKS.filter(w => w.type === "drive").map(w => w.route[0]).concat([CONFIG.home]));
+      map.fitBounds(b.pad(.15));
+    });
+    $("#zoom-home").addEventListener("click", () => map.setView(CONFIG.home, 14));
+  }
+  function focusWalk(id){
+    const w = WALKS.find(x => x.id === id); if (!w || !map) return;
+    if (!map.hasLayer(layers.walks)) { layers.walks.addTo(map); $('.maptools .chip[data-layer="walks"]').classList.add("on"); }
+    if (w.route.length > 1) map.fitBounds(L.latLngBounds(w.route).pad(.2)); else map.setView(w.route[0], 13);
+    walkLayers[id].eachLayer(l => { if (l.getPopup && l.getPopup() && l instanceof L.Marker) { l.openPopup(); } });
+  }
+})();
+</script>
+</body>
+</html>
