@@ -440,10 +440,16 @@
   }
   function goHome(){
     const b = localBounds();
-    map.fitBounds(b);
+    // Ask what fitBounds would choose BEFORE moving: fitBounds animates, so
+    // reading map.getZoom() straight after it returns the old zoom and the
+    // clamp below silently never fired, leaving the map at zoom 12 with every
+    // place label switched off. Deciding up front, unanimated, keeps it honest.
+    const z = map.getBoundsZoom(b);
     // Never zoom out past the level where place labels switch on: on a phone
     // the whole area won't fit, so centre it rather than shrink it.
-    if (map.getZoom() < 14) map.setView(b.getCenter(), 14);
+    if (z < 14) map.setView(b.getCenter(), 14, { animate: false });
+    else map.fitBounds(b, { animate: false });
+    syncLabels();
   }
 
   function buildMap(){
