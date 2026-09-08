@@ -406,6 +406,7 @@
   const layers = {}; const walkLayers = {}; let focused = null;
   const tipRefs = [];            // labelled markers: {marker, kind, id}
   let syncLabels = () => {};     // assigned in buildMap
+  let staggerLabels = () => {};  // assigned in buildMap
 
   // deterministic wobble so the lines look drawn rather than plotted
   function wobble(pts, seed){
@@ -449,7 +450,7 @@
     // the whole area won't fit, so centre it rather than shrink it.
     if (z < 14) map.setView(b.getCenter(), 14, { animate: false });
     else map.fitBounds(b, { animate: false });
-    syncLabels();
+    syncLabels(); staggerLabels();
   }
 
   function buildMap(){
@@ -502,13 +503,49 @@
         el.style.display = show ? "" : "none";
       });
     };
-    map.on("zoomend", syncLabels); syncLabels();
+    // The village names sit on top of each other at any usable zoom. Nudge the
+    // labels apart vertically, alternating up and down so each stays near its
+    // own pin. Only the text moves: the markers keep their true coordinates.
+    staggerLabels = function(){
+      const live = [];
+      tipRefs.forEach(ref => {
+        const tip = ref.marker.getTooltip && ref.marker.getTooltip();
+        const el = tip && tip.getElement();
+        if (!el || el.style.display === "none") return;
+        el.style.marginTop = "";
+        live.push(el);
+      });
+      if (live.length < 2) return;
+      const boxes = live.map(el => ({ el, r: el.getBoundingClientRect() }))
+                        .sort((a, b) => a.r.top - b.r.top);
+      const hits = (a, b) => a.left < b.right + 2 && b.left < a.right + 2 &&
+                             a.top  < b.bottom + 1 && b.top  < a.bottom + 1;
+      const placed = [];
+      boxes.forEach(b => {
+        const h = b.r.height, w = b.r.width;
+        let best = 0;
+        for (let step = 0; step <= 7; step++){
+          // 0, +h, -h, +2h, -2h, ... so a label never drifts far from its dot
+          const shift = (step === 0) ? 0
+            : (step % 2 ? 1 : -1) * Math.ceil(step / 2) * (h - 3);
+          const box = { left: b.r.left, right: b.r.left + w,
+                        top: b.r.top + shift, bottom: b.r.top + shift + h };
+          if (!placed.some(p => hits(p, box))) { best = shift; break; }
+          best = shift;
+        }
+        if (best) b.el.style.marginTop = best + "px";
+        placed.push({ left: b.r.left, right: b.r.left + w,
+                      top: b.r.top + best, bottom: b.r.top + best + h });
+      });
+    }
+    const relabel = () => { syncLabels(); staggerLabels(); };
+    map.on("zoomend moveend", relabel); relabel();
 
     $$(".maptools .chip[data-layer]").forEach(c => c.addEventListener("click", () => {
       if (focused) { setFocus(null); if (c.dataset.layer !== "walks") return; }
       const on = c.classList.toggle("on"); const l = layers[c.dataset.layer];
       on ? l.addTo(map) : map.removeLayer(l);
-      syncLabels();
+      syncLabels(); staggerLabels();
     }));
     $("#clear-focus").addEventListener("click", () => { setFocus(null); goHome(); });
     $("#zoom-out").addEventListener("click", () => {
@@ -531,7 +568,7 @@
       else { layers[k].addTo(map); chip.classList.add("on"); }
     });
     $("#clear-focus").hidden = !id;
-    syncLabels();
+    syncLabels(); staggerLabels();
   }
   function focusWalk(id){
     const w = WALKS.find(x => x.id === id); if (!w || !map) return;

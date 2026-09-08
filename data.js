@@ -20,11 +20,9 @@ const CONFIG = {
   // Home: the Baildon Road / Sandals Road bus stop.
   home: [53.84852, -1.76682],
 
-  // Numbers. Leave any blank ("") and its button disappears.
+  // Numbers she wouldn't already have. Leave any blank ("") and its button
+  // disappears. Ours aren't here on purpose: she has them.
   contacts: [
-    { name: "Sam",   phone: "" },
-    { name: "Steph", phone: "" },
-    { name: "Steph's mum and dad (Crook Farm, up Glen Road)", phone: "" },
     { name: "Baildon Vets", phone: "01274 580785", note: "5 Berry Drive, BD17 7GA. Same number out of hours." },
     { name: "Browgate Pharmacy", phone: "01274 583534", note: "5 Browgate. Pharmacy First: they can treat minor things without a GP." },
     { name: "Baildon Medical Practice", phone: "01274 581979", note: "10 Newton Way. Out of hours ring 111." },
