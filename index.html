@@ -29,7 +29,7 @@
     --tab-h:74px;
   }
   *{box-sizing:border-box}
-  html,body{margin:0;height:100%}
+  html,body{margin:0;min-height:100%}
   body{
     font-family:"Nunito",system-ui,sans-serif;
     font-size:19px; line-height:1.5;
@@ -113,7 +113,8 @@
   .walk .summary{margin:6px 0 0; color:var(--ink-soft); font-size:17px}
   .walk .more{display:none; padding:0 16px 16px; border-top:1px dashed var(--pencil)}
   .walk.open .more{display:block; padding-top:12px}
-  .walk .more .lab{font-family:"Caveat",cursive; font-size:24px; font-weight:700; color:var(--tan); margin-top:10px}
+  .walk .more .lab,
+  .suggest .lab{font-family:"Caveat",cursive; font-size:24px; font-weight:700; color:var(--tan); margin-top:10px}
   .suggest{border:2px solid var(--gorse); background:rgba(209,154,30,.12)}
   .suggest .tag{font-family:"Caveat",cursive; font-size:24px; color:var(--tan); font-weight:700}
 
@@ -308,11 +309,19 @@
     ? evToday.map(e => `<div class="row today"><div class="t">${esc(e.time || "Today")}</div><div>${esc(e.what)}</div></div>`).join("")
     : `<div class="row today"><div class="t">Nothing booked</div><div>No one's coming and nothing needs doing at a set time. Woody's meals are the only timetable.</div></div>`);
 
-  // suggested walk: rotate through the ones from home or nearby
-  const rota = ["village","bank","glen","trig","saltaire","canal","tongpark"];
-  const suggestId = rota[((dayIndex % rota.length) + rota.length) % rota.length];
+  // Suggested next walk: steps one along the rota each time she opens the
+  // page, so it isn't the same walk all week. Falls back to the day index if
+  // localStorage isn't available (private browsing, etc).
+  const rota = ["village","bank","glen","dell","trig","saltaire","canal","tongpark"];
+  let turn;
+  try {
+    turn = (parseInt(localStorage.getItem("woody-walk-turn"), 10) || 0) + 1;
+    localStorage.setItem("woody-walk-turn", String(turn));
+  } catch (e) { turn = dayIndex; }
+  const suggestId = rota[((turn % rota.length) + rota.length) % rota.length];
   const sw = WALKS.find(w => w.id === suggestId) || WALKS[0];
-  $("#today-walk").innerHTML = `<div class="tag">Walk for today</div><h3>${esc(sw.name)}</h3><div class="meta">${esc(sw.time)}. Starts from ${esc(sw.from)}.</div><p style="margin-top:8px">${esc(sw.summary)}</p>
+  $("#today-walk").innerHTML = `<div class="tag">Suggested next walk</div><h3>${esc(sw.name)}</h3><div class="meta">${esc(sw.time)}. Starts from ${esc(sw.from)}.</div><p style="margin-top:8px">${esc(sw.summary)}</p>
+    <div class="lab">From home</div><p>${esc(sw.fromHome)}</p>
     <button class="btn" data-goto-walk="${sw.id}">Read it</button><button class="btn" data-goto-map="${sw.id}">See it on the map</button>`;
 
   // ---------- walks ----------
@@ -327,6 +336,7 @@
       </button>
       <div class="more" id="more-${w.id}">
         <div class="meta"><strong>${esc(w.time)}.</strong> Starts from ${esc(w.from)}${w.end ? ", ends at " + esc(w.end) : ""}.</div>
+        <div class="lab">From home</div><p>${esc(w.fromHome)}</p>
         <div class="lab">The walk</div><p>${esc(w.detail)}</p>
         <div class="lab">Woody</div><p>${esc(w.woody)}</p>
         ${w.parking ? `<div class="lab">Driving</div><p>${esc(w.parking)}</p>` : ""}
@@ -373,7 +383,12 @@
     $$(".page").forEach(p => p.classList.toggle("on", p.id === page + "-page"));
     $$(".tab").forEach(t => t.classList.toggle("on", t.dataset.page === page));
     window.scrollTo(0,0);
-    if (page === "map"){ if (!map) buildMap(); setTimeout(() => map.invalidateSize(), 50); }
+    if (page === "map"){
+      const firstOpen = !map;
+      if (firstOpen) buildMap();
+      // Frame it once the container has its real size, or fitBounds guesses.
+      setTimeout(() => { map.invalidateSize(); if (firstOpen) goHome(); }, 50);
+    }
   }
   $$(".tab").forEach(t => t.addEventListener("click", () => show(t.dataset.page)));
   document.addEventListener("click", e => {
@@ -407,6 +422,25 @@
     html:`<svg class="pin" viewBox="0 0 30 30"><path d="M15 28c-4-6-9-9.5-9-15.5A9 9 0 0 1 24 12.3c.2 6.2-5 9.5-9 15.7z" fill="${colour}" stroke="${ink}" stroke-width="1.6" stroke-linejoin="round"/><circle cx="15" cy="12.5" r="4.6" fill="#FBF8F0" stroke="${ink}" stroke-width="1.4"/><text x="15" y="15.6" text-anchor="middle" font-family="Caveat,cursive" font-size="10" font-weight="700" fill="${ink}">${letter}</text></svg>` });
   const roughDot = (colour) => L.divIcon({ className:"", iconSize:[18,18], iconAnchor:[9,9], popupAnchor:[0,-8],
     html:`<svg viewBox="0 0 18 18" width="18" height="18"><path d="M9 2.2c3.9-.4 6.9 2.9 6.6 6.6-.3 3.9-3.3 7-7 6.6C4.8 15 2 11.9 2.4 8.4 2.7 5 5.5 2.6 9 2.2z" fill="${colour}" stroke="${ink}" stroke-width="1.6"/></svg>` });
+
+  // The everyday area: home, the places, and the local walks within about
+  // 3km. Centring on the house alone put half the screen over Shipley and cut
+  // the village off the top, so the opening view frames this instead.
+  function localBounds(){
+    const origin = L.latLng(CONFIG.home);
+    const pts = [CONFIG.home]
+      .concat(PLACES.map(p => p.at))
+      .concat(WALKS.filter(w => w.type !== "drive").reduce((a, w) => a.concat(w.route), []))
+      .filter(ll => origin.distanceTo(ll) < 3000);
+    return L.latLngBounds(pts).pad(.06);
+  }
+  function goHome(){
+    const b = localBounds();
+    map.fitBounds(b);
+    // Never zoom out past the level where place labels switch on: on a phone
+    // the whole area won't fit, so centre it rather than shrink it.
+    if (map.getZoom() < 14) map.setView(b.getCenter(), 14);
+  }
 
   function buildMap(){
     map = L.map("map", { zoomControl:true, attributionControl:true }).setView(CONFIG.home, 14);
@@ -456,7 +490,7 @@
       const b = L.latLngBounds(WALKS.filter(w => w.type === "drive").map(w => w.route[0]).concat([CONFIG.home]));
       map.fitBounds(b.pad(.15));
     });
-    $("#zoom-home").addEventListener("click", () => map.setView(CONFIG.home, 14));
+    $("#zoom-home").addEventListener("click", goHome);
   }
   function focusWalk(id){
     const w = WALKS.find(x => x.id === id); if (!w || !map) return;

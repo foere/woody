@@ -20,14 +20,14 @@ Everything editable is in `data.js`, top to bottom:
 - `home` - currently set to Lane End as a placeholder. Put the house's coordinates in (right-click the house in Google Maps, the numbers at the top of the menu are lat, lng).
 - `contacts` - your and Steph's numbers and Steph's parents' are blank. Fill them in or leave blank; blank ones don't show.
 - `MESSAGES` - one per day, in your voice not mine. Rewrite them.
-- `WALKS` - the `route` points are plotted by hand from your descriptions on an OpenStreetMap base, not from AllTrails. Check them on the Map tab; if one strays, edit the numbers (each is `[lat, lng]`). The Cliffe Lane park, Ferniehurst Dell and vets pins are the ones I'm least sure of.
+- `WALKS` - every walk has a `fromHome` line saying how you get to the start from the house, on foot or in the car. Those times are guesses made off the placeholder `home` above, so once you've moved `home` to the real house, read them through and correct anything that's out. The `route` points are plotted by hand from your descriptions on an OpenStreetMap base, not from AllTrails. Check them on the Map tab; if one strays, edit the numbers (each is `[lat, lng]`). The Cliffe Lane park, Ferniehurst Dell and vets pins are the ones I'm least sure of.
 - `PLACES` - shops, fuel, vet, and the "for you" places. Add or remove freely.
 
 The PIN is a deterrent, not security: don't put the alarm code or WiFi password in the site.
 
 ## What's in it
 
-- Today: her message for the day, anything happening today, a suggested walk, and tap-to-call numbers.
+- Today: her message for the day, anything happening today, a suggested walk (it moves on one every time she opens the page, so she isn't shown the same one all week), and tap-to-call numbers.
 - Walks: nine local walks and five day outs, filterable, each with directions to the start.
 - Map: hand-drawn style map with the routes, start and end points, and places. Toggle layers at the top.
 - Woody: the house-specific bits from the user guide, nothing else.
