@@ -132,6 +132,7 @@
   .lab-tip{background:none; border:0; box-shadow:none; font-family:"Caveat",cursive; font-size:19px; font-weight:700; color:var(--ink); text-shadow:0 0 4px var(--paper),0 0 6px var(--paper); padding:0}
   .maptools{position:absolute; z-index:800; top:12px; left:12px; right:12px; display:flex; gap:8px; flex-wrap:wrap; pointer-events:none}
   .maptools .chip{pointer-events:auto; background:var(--paper)}
+  .maptools .chip[hidden]{display:none}
   .maptools .chip.on{background:var(--ink)}
   .pin{width:30px;height:30px}
 
@@ -218,6 +219,7 @@
       <button class="chip on" data-layer="nice">For you</button>
       <button class="chip" id="zoom-out">Day outs</button>
       <button class="chip" id="zoom-home">Home</button>
+      <button class="chip" id="clear-focus" hidden>Show all</button>
     </div>
     <div id="map" role="application" aria-label="Sketch map of Baildon with walks and places"></div>
   </div>
@@ -401,7 +403,7 @@
   // ---------- map ----------
   const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim();
   const walkColours = { short:"#5E7D4E", medium:"#B0702C", long:"#7A5C8A", drive:"#4A7C96" };
-  const layers = {}; const walkLayers = {};
+  const layers = {}; const walkLayers = {}; let focused = null;
 
   // deterministic wobble so the lines look drawn rather than plotted
   function wobble(pts, seed){
@@ -412,7 +414,7 @@
       const steps = 5;
       for (let k = 0; k < steps; k++){
         const t = k/steps; const j = (k===0 && i===0) ? 0 : 1;
-        out.push([a1 + (a2-a1)*t + rnd()*0.00022*j, b1 + (b2-b1)*t + rnd()*0.00035*j]);
+        out.push([a1 + (a2-a1)*t + rnd()*0.000035*j, b1 + (b2-b1)*t + rnd()*0.000055*j]);
       }
     }
     out.push(pts[pts.length-1]);
@@ -483,18 +485,36 @@
     map.on("zoomend", setLabels); setLabels();
 
     $$(".maptools .chip[data-layer]").forEach(c => c.addEventListener("click", () => {
+      if (focused) { setFocus(null); if (c.dataset.layer !== "walks") return; }
       const on = c.classList.toggle("on"); const l = layers[c.dataset.layer];
       on ? l.addTo(map) : map.removeLayer(l);
     }));
+    $("#clear-focus").addEventListener("click", () => { setFocus(null); goHome(); });
     $("#zoom-out").addEventListener("click", () => {
+      setFocus(null);
       const b = L.latLngBounds(WALKS.filter(w => w.type === "drive").map(w => w.route[0]).concat([CONFIG.home]));
       map.fitBounds(b.pad(.15));
     });
-    $("#zoom-home").addEventListener("click", goHome);
+    $("#zoom-home").addEventListener("click", () => { setFocus(null); goHome(); });
+  }
+  // Focus mode: one walk on its own. Pass null to put everything back.
+  function setFocus(id){
+    focused = id;
+    Object.keys(walkLayers).forEach(wid => {
+      const g = walkLayers[wid];
+      if (!id || wid === id) layers.walks.addLayer(g); else layers.walks.removeLayer(g);
+    });
+    ["need","nice"].forEach(k => {
+      const chip = $('.maptools .chip[data-layer="' + k + '"]');
+      if (id){ if (map.hasLayer(layers[k])) map.removeLayer(layers[k]); chip.classList.remove("on"); }
+      else { layers[k].addTo(map); chip.classList.add("on"); }
+    });
+    $("#clear-focus").hidden = !id;
   }
   function focusWalk(id){
     const w = WALKS.find(x => x.id === id); if (!w || !map) return;
     if (!map.hasLayer(layers.walks)) { layers.walks.addTo(map); $('.maptools .chip[data-layer="walks"]').classList.add("on"); }
+    setFocus(id);
     if (w.route.length > 1) map.fitBounds(L.latLngBounds(w.route).pad(.2)); else map.setView(w.route[0], 13);
     walkLayers[id].eachLayer(l => { if (l.getPopup && l.getPopup() && l instanceof L.Marker) { l.openPopup(); } });
   }
