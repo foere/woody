@@ -124,6 +124,8 @@
   .picker .chip{margin:0 8px 8px 0}
   .picker .found{margin-top:12px; padding-top:12px; border-top:1.5px solid var(--paper-deep)}
   .picker .found .why{color:var(--ink-soft); font-size:17px; margin:0 0 6px}
+  .picker .opt + .opt{margin-top:14px; padding-top:14px; border-top:1.5px dashed var(--paper-deep)}
+  .picker .opt .meta{color:var(--ink-soft); font-size:17px}
 
   /* ---------- Map ---------- */
   #map-page{padding:0; max-width:none}
@@ -458,23 +460,44 @@
       score(b) - score(a)
       || (a.drive || 0) - (b.drive || 0)
       || (pick.max ? (b.mins || 0) - (a.mins || 0) : (a.mins || 0) - (b.mins || 0)));
-    const best = pool[0];
-    if (!best){
+    if (!pool.length){
+      $("#pick-q").textContent = "Hmm";
+      $("#pick-opts").innerHTML = "";
       $("#pick-result").innerHTML = `<div class="found"><p class="why">Nothing quite fits that. Have a look through the list below.</p></div>`;
-      $("#pick-opts").innerHTML = ""; $("#pick-q").textContent = "Hmm";
       return;
     }
-    const why = loose ? "Nothing matched exactly, so here's the closest."
-      : score(best) ? "This one should suit." : "The nearest thing to it.";
-    $("#pick-q").textContent = "How about this?";
+    // Show everything that genuinely fits, not just the winner: often two or
+    // three are viable and the choice is hers.
+    const top = score(pool[0]);
+    let shortlist = pool.filter(w => score(w) === top).slice(0, 3);
+    if (shortlist.length < 2 && pool.length > 1) shortlist = pool.slice(0, 2);
+
+    const PHRASE = { shops:"shops and cafes to wander", easy:"easy going",
+      flat:"flat the whole way", pavement:"all pavement", water:"water most of the way",
+      views:"big views", hills:"a proper climb", woods:"under the trees",
+      history:"a bit of history" };
+    function why(w){
+      const hit = (w.vibe || []).filter(v => want.includes(v)).map(v => PHRASE[v]).filter(Boolean);
+      const bits = [];
+      if (hit.length) bits.push(hit.slice(0, 2).join(", "));
+      else if (want.length) bits.push("not quite what you asked for, but the nearest to it");
+      if (w.type === "drive") bits.push(w.drive + " minutes' drive");
+      else if (w.drive) bits.push(w.drive + " minutes in the car to the start");
+      else bits.push("starts at the door");
+      const s = bits.join(". ");
+      return s.charAt(0).toUpperCase() + s.slice(1) + ".";
+    }
+
+    $("#pick-q").textContent = shortlist.length > 1 ? "Either of these" : "How about this?";
     $("#pick-opts").innerHTML = "";
-    $("#pick-result").innerHTML = `<div class="found">
-      <p class="why">${esc(why)}</p>
-      <h3>${esc(best.name)}</h3>
-      <div class="meta">${esc(best.time)}</div>
-      <p style="margin-top:6px">${esc(best.summary)}</p>
-      <button class="btn" data-goto-walk="${best.id}">Read it</button><button class="btn" data-goto-map="${best.id}">See it on the map</button>
-    </div>`;
+    $("#pick-result").innerHTML = `<div class="found">${
+      loose ? `<p class="why">Nothing matched exactly, so these are the closest.</p>` : ""
+    }${shortlist.map(w => `<div class="opt">
+        <h3>${esc(w.name)}</h3>
+        <div class="meta">${esc(why(w))}</div>
+        <p style="margin-top:6px">${esc(w.summary)}</p>
+        <button class="btn" data-goto-walk="${w.id}">Read it</button><button class="btn" data-goto-map="${w.id}">See it on the map</button>
+      </div>`).join("")}</div>`;
   }
   $("#picker").addEventListener("click", e => {
     const b = e.target.closest("[data-pick]");
