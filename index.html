@@ -742,6 +742,12 @@
   function setFocus(id){
     focused = id;
     const days = id === "days";
+    // Every route and day-out pin lives inside layers.walks, so nothing can be
+    // focused while that layer is switched off.
+    if (id && !map.hasLayer(layers.walks)){
+      layers.walks.addTo(map);
+      $('.maptools .chip[data-layer="walks"]').classList.add("on");
+    }
     Object.keys(walkLayers).forEach(wid => {
       const g = walkLayers[wid];
       const w = WALKS.find(x => x.id === wid);
@@ -758,7 +764,6 @@
   }
   function focusWalk(id){
     const w = WALKS.find(x => x.id === id); if (!w || !map) return;
-    if (!map.hasLayer(layers.walks)) { layers.walks.addTo(map); $('.maptools .chip[data-layer="walks"]').classList.add("on"); }
     setFocus(id);
     if (w.route.length > 1) map.fitBounds(L.latLngBounds(w.route).pad(.2)); else map.setView(w.route[0], 13);
     walkLayers[id].eachLayer(l => { if (l.getPopup && l.getPopup() && l instanceof L.Marker) { l.openPopup(); } });
