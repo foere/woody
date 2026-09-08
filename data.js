@@ -6,7 +6,7 @@
 
 const CONFIG = {
   // Four digits she types once. Change it.
-  pin: "2026",
+  pin: "1992",
 
   // Dates Mum is here (inclusive). Messages and the Week tab run off these.
   firstDay: "2026-09-20",
@@ -72,14 +72,14 @@ const WEEK_EVENTS = [
   { date: "2026-09-20", time: "",        what: "You arrive. Sam and Steph are away until Sunday 27th." },
   { date: "2026-09-22", time: "Evening", what: "Grey recycling bin out. Neighbours will bring it back down." },
   { date: "2026-09-23", time: "9 to 11", what: "Cleaners. Let them in and out. Nothing else to do." },
-  { date: "2026-09-26", time: "",        what: "Last full day." },
-  { date: "2026-09-27", time: "",        what: "Sam and Steph home." },
+  { date: "2026-09-25", time: "",        what: "Last full day." },
+  { date: "2026-09-26", time: "",        what: "Sam and Steph home." },
 ];
 
 const EVERY_DAY = [
   { time: "Morning",  what: "Back door open for Woody, then breakfast: 4 level scoops in the maze bowl." },
   { time: "12:00",    what: "A chew for Woody (left cupboard, dining room)." },
-  { time: "17:00",    what: "Tea: 4 level scoops in the maze bowl." },
+  { time: "18:00",    what: "Tea: 4 level scoops in the maze bowl." },
   { time: "Bedtime",  what: "Toilet trip, collar off, 'on your bed' with a treat, light off, door shut." },
   { time: "Any time", what: "Gardener may turn up. He knows what he's doing, leave him to it." },
   { time: "Every other day", what: "Plants: a splash of water for the ones that look thirsty." },
@@ -89,12 +89,12 @@ const EVERY_DAY = [
 //  Woody tab
 // ------------------------------------------------------------
 const WOODY = [
-  { h: "Food",     p: "4 level scoops from the bin into his maze bowl, morning after his first toilet trip and again at 17:00. He will cry for it early. Ignore him, he needs to learn patience." },
+  { h: "Food",     p: "4 level scoops from the bin into his maze bowl, morning after his first toilet trip and again at 18:00. He will cry for it early. Ignore him, he needs to learn patience." },
   { h: "Chew",     p: "12:00, from the left cupboard in the dining room. A beef chew or similar." },
   { h: "Water",    p: "Normal tap water. Check the bowl a couple of times a day." },
   { h: "Leaving him", p: "If you're going out for more than an hour, walk him first. Lock the back door, shut the curtains, lights off if it's dark. Take a treat from the bag on the counter into the lounge, say 'on your bed', put the treat on the bed with him. Switch on the camera (on the fireplace), light off, door shut. When you're back, open the back door for him." },
-  { h: "Bedtime",  p: "Any time from about 9. Back door open for a last wee, then the same 'on your bed' routine. Collar off before bed. If he cries in the night, ignore him." },
-  { h: "Walks",    p: "Extendy lead for walks, short lead near roads and in the car. Both in the cupboard. Poo bags by the door. He's fine off the lead on the moor and in the woods if you're happy with him." },
+  { h: "Bedtime",  p: "Any time from about 9. Back door open for a last wee, then the same 'on your bed' routine. Collar off before bed. If he cries in the night, ignore him (or let him stay on your bed I SUPPOSE)." },
+  { h: "Walks",    p: "Extendy lead for walks where you're not planning to let him off, short lead otherwise. Both in the cupboard. Poo bags by the door. He's fine off the lead on the moor and in the woods etc." },
   { h: "In the car", p: "Collar and short lead on and he's fine. If you ever need the vet, they're two minutes away, number below." },
   { h: "Barking",  p: "He barks when he goes out the back. It's mostly announcement, not alarm. Ignore it." },
 ];
