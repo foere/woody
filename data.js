@@ -383,7 +383,7 @@ const PLACES = [
   { name: "Co-op", group: "need", at: [53.85427,-1.76515], note: "25 Northgate. 7am to 10pm, Sunday 10 to 4." },
   { name: "Four Corners coffee", group: "nice", at: [53.85400,-1.76540], note: "20 Northgate. Tue to Sat 8:30 to 3, Sun 9:30 to 2, closed Monday. Dogs welcome, the best coffee in Baildon." },
   { name: "Baildon Vets", group: "need", at: [53.84098,-1.76585], note: "5 Berry Drive. 01274 580785. Five minutes down the hill." },
-  { name: "Dog bus pickup", group: "need", at: [53.84098,-1.76585], note: "Berry Drive, the motorbike showroom car park. Thursday 10:40." },
+  { name: "Dog bus pickup", group: "need", at: [53.84070,-1.76528], note: "Berry Drive, the motorbike showroom car park, just along from the vets. Thursday 10:40. Look for the car park rather than trusting the pin exactly." },
   { name: "Browgate Pharmacy", group: "need", at: [53.85129,-1.76639], note: "5 Browgate, in the village. 01274 583534." },
   { name: "Baildon Medical Practice", group: "need", at: [53.85351,-1.76794], note: "10 Newton Way. 01274 581979." },
   { name: "Cliff Avenue Surgery", group: "need", at: [53.84874,-1.76883], note: "The other surgery, two minutes from the house on Cliffe Avenue." },
