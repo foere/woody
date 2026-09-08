@@ -24,24 +24,33 @@ Others that work:
 export that. That's the most accurate option available, because it's literally
 the path you took, and you'd be walking Woody anyway.
 
-## Naming
+## The nine to draw
 
-Name each file after the walk's `id` in `data.js`:
+Only the local walks need GPX files. The five days out (Bolton Abbey, Brimham,
+Grassington, Ingleton, Haworth) are single pins, not routes, so leave those.
 
-| File | Walk |
-| --- | --- |
-| `village.gpx` | Up to the village |
-| `trig.gpx` | The moor and the trig point |
-| `tongpark.gpx` | Rugby club, Willy Wood and Tong Park |
-| `ilkley.gpx` | Over the moor to Ilkley |
-| `bank.gpx` | Cliffe Avenue Park and along the bank |
-| `glen.gpx` | Shipley Glen and the wood |
-| `saltaire.gpx` | Down the tramway to Saltaire |
-| `dell.gpx` | Ferniehurst Dell |
-| `canal.gpx` | Roberts Park and the canal |
+Name each file after the walk's `id`. Draw them in the direction you'd walk
+them: the first point becomes the start pin, the last becomes the end pin.
 
-Draw them in the direction you'd walk them: the first point becomes the start
-pin, the last becomes the end pin.
+Home is the Baildon Road / Sandals Road bus stop, `53.84852, -1.76682`.
+
+| File | Walk | Start | End | Mine is |
+| --- | --- | --- | --- | --- |
+| `village.gpx` | Up to the village | Home | Baildon village | 0.9 km |
+| `trig.gpx` | The moor and the trig point | Baildon village | Moor trig point | 1.6 km |
+| `tongpark.gpx` | Rugby club, Willy Wood and Tong Park | Baildon village | Loop back to the village | 4.8 km |
+| `ilkley.gpx` | Over the moor to Ilkley | Baildon village | Ilkley station | 12.4 km |
+| `bank.gpx` | Cliffe Avenue Park and along the bank | Cliffe Avenue Park | Bracken Hall Green | 3.1 km |
+| `glen.gpx` | Shipley Glen and the wood | Bracken Hall Green | Bottom of the Glen, by the tramway | 1.3 km |
+| `saltaire.gpx` | Down the tramway to Saltaire | West end of Baildon Bank | Saltaire station | 3.1 km |
+| `dell.gpx` | Ferniehurst Dell | Ferniehurst Dell | Loop, back where you started | 0.7 km |
+| `canal.gpx` | Roberts Park and the canal | Roberts Park, Saltaire | Hirst Wood | 1.6 km |
+
+The distances are what the router picked, for comparison. If yours comes out
+very different, yours is the right one.
+
+Two are loops (`tongpark`, `dell`) so they should finish where they started.
+`saltaire` and `ilkley` are one-way with a train home, so don't draw the return.
 
 ## Importing
 
