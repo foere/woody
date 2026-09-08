@@ -701,22 +701,25 @@
       const placed = [];
       boxes.forEach(b => {
         const h = b.r.height, w = b.r.width, lift = h - 3;
-        // Labels sit to the right of their pin by default. Near the right edge
-        // that runs them off the map, so flip those to the left instead.
-        const dx = (b.r.right > edge.right - 6) ? -(w + 14) : 0;
-        // One line up or down at most: a label further than that from its own
-        // pin tells you nothing, so anything that still won't fit is dropped
-        // and left to its pin, which stays tappable for the name and details.
+        // Six places to try: right of the pin or left of it, each on its own
+        // line or one line up or down. A label further from its pin than that
+        // stops meaning anything, so if none of the six is free it's dropped
+        // and left to the pin, which stays tappable for the name and details.
+        const flip = -(w + 14);
+        const spots = [];
+        [0, flip].forEach(dx => [0, lift, -lift].forEach(shift => spots.push({ dx, shift })));
+        // Prefer staying on the pin's own line before hopping sides.
+        spots.sort((p, q) => Math.abs(p.shift) - Math.abs(q.shift));
         let put = null;
-        for (const shift of [0, lift, -lift]) {
-          const box = { left: b.r.left + dx, right: b.r.left + dx + w,
-                        top: b.r.top + shift, bottom: b.r.top + shift + h };
+        for (const sp of spots) {
+          const box = { left: b.r.left + sp.dx, right: b.r.left + sp.dx + w,
+                        top: b.r.top + sp.shift, bottom: b.r.top + sp.shift + h };
           if (box.left < edge.left + 2 || box.right > edge.right - 2) continue;
-          if (!placed.some(p => hits(p, box))) { put = { shift, box }; break; }
+          if (!placed.some(p => hits(p, box))) { put = { sp, box }; break; }
         }
         if (!put) { b.el.style.display = "none"; return; }
-        if (put.shift) b.el.style.marginTop = put.shift + "px";
-        if (dx) b.el.style.marginLeft = dx + "px";
+        if (put.sp.shift) b.el.style.marginTop = put.sp.shift + "px";
+        if (put.sp.dx) b.el.style.marginLeft = put.sp.dx + "px";
         placed.push(put.box);
       });
     };
