@@ -81,7 +81,7 @@ const WEEK_EVENTS = [
   { date: "2026-09-20", time: "",        what: "You arrive. Sam and Steph are away until Saturday the 26th." },
   { date: "2026-09-22", time: "Evening", what: "Grey recycling bin out. Neighbours will bring it back down." },
   { date: "2026-09-23", time: "9 to 11", what: "Cleaners. Let them in and out. Nothing else to do." },
-  { date: "2026-09-24", time: "10:40",   what: "Woody's Dog Bus. Drop off on Berry Drive, in the motorbike showroom car park. Then drive up to the Bark Park and join in, and bring him home afterwards. Map for the Bark Park to follow." },
+  { date: "2026-09-24", time: "10:40",   what: "Woody's Dog Bus. Harness on, not his collar. Drop off on Berry Drive, in the motorbike showroom car park. Then drive up to the Bark Park and join in, and bring him home afterwards. Map for the Bark Park to follow." },
   { date: "2026-09-25", time: "",        what: "Last full day." },
   { date: "2026-09-26", time: "",        what: "Sam and Steph home." },
 ];
@@ -104,8 +104,8 @@ const WOODY = [
   { h: "Water",    p: "Normal tap water. Check the bowl a couple of times a day." },
   { h: "Leaving him", p: "If you're going out for more than an hour, walk him first. Lock the back door, shut the curtains, lights off if it's dark. Take a treat from the bag on the counter into the lounge, say 'on your bed', put the treat on the bed with him. Switch on the camera (on the fireplace), light off, door shut. When you're back, open the back door for him." },
   { h: "Bedtime",  p: "Any time from about 9. Back door open for a last wee, then the same 'on your bed' routine. Collar off before bed. If he cries in the night, ignore him (or let him stay on your bed I SUPPOSE)." },
-  { h: "Walks",    p: "Take one lead, not two. The short one for everything except the trot round the block, which is what the extendy one is for. Anywhere he might come off, it's the short lead. Both live in the cupboard, poo bags by the door. He's fine off the lead on the moor and in the woods." },
-  { h: "Dog bus",  p: "Thursday, 10:40, Berry Drive in the motorbike showroom car park. Collar and short lead on. He's done it before and he'll be beside himself, so just follow him." },
+  { h: "Walks",    p: "The short lead for everything except the trot round the block, which is what the extendy one is for. Both live in the cupboard, poo bags by the door. He's fine off the lead on the moor and in the woods." },
+  { h: "Dog bus",  p: "Thursday, 10:40, Berry Drive in the motorbike showroom car park. Harness on for this one, not his collar. It's in the left cupboard, left-hand side. He's done it before and he'll be beside himself, so just follow him." },
   { h: "In the car", p: "Collar and short lead on and he's fine. If you ever need the vet, they're on Berry Drive, five minutes away, number below." },
   { h: "Barking",  p: "He barks when he goes out the back. It's announcement rather than alarm, so nothing to worry about." },
 ];
