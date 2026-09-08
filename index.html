@@ -217,7 +217,7 @@
       <button class="chip on" data-layer="walks">Walks</button>
       <button class="chip on" data-layer="need">Shops, fuel, vet</button>
       <button class="chip on" data-layer="nice">For you</button>
-      <button class="chip" id="zoom-out">Day outs</button>
+      <button class="chip" id="zoom-out">Days out</button>
       <button class="chip" id="zoom-home">Home</button>
       <button class="chip" id="clear-focus" hidden>Show all</button>
     </div>
@@ -404,6 +404,8 @@
   const ink = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim();
   const walkColours = { short:"#5E7D4E", medium:"#B0702C", long:"#7A5C8A", drive:"#4A7C96" };
   const layers = {}; const walkLayers = {}; let focused = null;
+  const tipRefs = [];            // labelled markers: {marker, kind, id}
+  let syncLabels = () => {};     // assigned in buildMap
 
   // deterministic wobble so the lines look drawn rather than plotted
   function wobble(pts, seed){
@@ -464,30 +466,43 @@
         L.marker(w.route[0], { icon: roughDot(colour) }).addTo(g).bindPopup(pop);
         L.marker(w.route[w.route.length-1], { icon: roughPin(colour, "E") }).addTo(g).bindPopup(pop);
       } else {
-        L.marker(w.route[0], { icon: roughPin(colour, "D") }).addTo(g).bindPopup(pop)
+        const dm = L.marker(w.route[0], { icon: roughPin(colour, "D") }).addTo(g).bindPopup(pop)
           .bindTooltip(w.name, { permanent:true, direction:"right", offset:[8,-14], className:"lab-tip lab-far" });
+        tipRefs.push({ marker: dm, kind: "walk", id: w.id });
       }
       walkLayers[w.id] = g;
     });
 
     PLACES.forEach(p => {
       const colour = p.group === "need" ? "#4A7C96" : "#7A5C8A";
-      L.marker(p.at, { icon: roughDot(colour) }).addTo(layers[p.group])
+      const pm = L.marker(p.at, { icon: roughDot(colour) }).addTo(layers[p.group])
         .bindPopup(`<h3>${esc(p.name)}</h3>${esc(p.note)}<br><a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=${p.at[0]},${p.at[1]}" target="_blank" rel="noopener">Directions</a>`)
         .bindTooltip(p.name, { permanent:true, direction:"right", offset:[7,0], className:"lab-tip" });
+      tipRefs.push({ marker: pm, kind: "place", id: p.group });
     });
 
-    // label density: hide place labels when zoomed out
-    const setLabels = () => {
+    // A label shows only if it is zoomed in enough, its layer is on, and it
+    // isn't being hidden by focus mode.
+    syncLabels = () => {
       const z = map.getZoom();
-      $$(".lab-tip").forEach(el => { const far = el.classList.contains("lab-far"); el.style.display = (far ? z >= 9 : z >= 14) ? "" : "none"; });
+      tipRefs.forEach(ref => {
+        const tip = ref.marker.getTooltip && ref.marker.getTooltip();
+        const el = tip && tip.getElement();
+        if (!el) return;
+        const far = el.classList.contains("lab-far");
+        let show = far ? z >= 9 : z >= 14;
+        if (focused) show = show && ref.kind === "walk" && ref.id === focused;
+        else if (ref.kind === "place") show = show && map.hasLayer(layers[ref.id]);
+        el.style.display = show ? "" : "none";
+      });
     };
-    map.on("zoomend", setLabels); setLabels();
+    map.on("zoomend", syncLabels); syncLabels();
 
     $$(".maptools .chip[data-layer]").forEach(c => c.addEventListener("click", () => {
       if (focused) { setFocus(null); if (c.dataset.layer !== "walks") return; }
       const on = c.classList.toggle("on"); const l = layers[c.dataset.layer];
       on ? l.addTo(map) : map.removeLayer(l);
+      syncLabels();
     }));
     $("#clear-focus").addEventListener("click", () => { setFocus(null); goHome(); });
     $("#zoom-out").addEventListener("click", () => {
@@ -510,6 +525,7 @@
       else { layers[k].addTo(map); chip.classList.add("on"); }
     });
     $("#clear-focus").hidden = !id;
+    syncLabels();
   }
   function focusWalk(id){
     const w = WALKS.find(x => x.id === id); if (!w || !map) return;

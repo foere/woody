@@ -28,7 +28,7 @@ The PIN is a deterrent, not security: don't put the alarm code or WiFi password 
 ## What's in it
 
 - Today: her message for the day, anything happening today, a suggested walk (it moves on one every time she opens the page, so she isn't shown the same one all week), and tap-to-call numbers.
-- Walks: nine local walks and five day outs, filterable, each with directions to the start.
+- Walks: nine local walks and five days out, filterable, each with directions to the start.
 - Map: hand-drawn style map with the routes, start and end points, and places. Toggle layers at the top.
 - Woody: the house-specific bits from the user guide, nothing else.
 - Week: day by day, with today highlighted, plus the every-day routine.

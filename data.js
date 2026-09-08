@@ -308,7 +308,7 @@ const WALKS = [
     ],
     end: "Hirst Wood",
   },
-  // ---- Day outs, all within about 1.5 hours ----
+  // ---- Days out, all within about 1.5 hours ----
   {
     id: "bolton",
     name: "Bolton Abbey",
