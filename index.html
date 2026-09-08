@@ -671,7 +671,9 @@
         const el = tip && tip.getElement();
         if (!el) return;
         const far = el.classList.contains("lab-far");
-        let show = far ? z >= 9 : z >= 14;
+        // 7, not 9: with York and Ingleton in, the days out fit at zoom 8
+        // and their names were hiding exactly when you asked to see them.
+        let show = far ? z >= 7 : z >= 14;
         if (focused === "days") show = show && ref.kind === "walk";
         else if (focused) show = show && ref.kind === "walk" && ref.id === focused;
         else if (ref.kind === "place") show = show && map.hasLayer(layers[ref.id]);
