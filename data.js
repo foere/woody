@@ -134,7 +134,7 @@ const WALKS = [
   },
   {
     id: "village",
-    mins: 40, drive: 0, vibe: ["easy","pavement","shops"],
+    mins: 40, drive: 0, vibe: ["pavement","shops"],
     name: "Up to the village",
     type: "short",
     time: "20 min each way",
@@ -175,7 +175,7 @@ const WALKS = [
   },
   {
     id: "glen",
-    mins: 15, drive: 8, vibe: ["easy","views"],
+    mins: 15, drive: 8, vibe: ["easy","flat","views"],
     name: "Shipley Glen, the short loop",
     type: "short",
     time: "15 min round the loop",
@@ -194,7 +194,7 @@ const WALKS = [
   },
   {
     id: "glenhome",
-    mins: 120, drive: 0, vibe: ["views","hills","woods"],
+    mins: 120, drive: 0, vibe: ["hills","views","woods"],
     name: "The Glen and back, on foot",
     type: "long",
     time: "About two hours, 9.8 km",
@@ -228,7 +228,7 @@ const WALKS = [
   },
   {
     id: "trig",
-    mins: 100, drive: 0, vibe: ["views","hills"],
+    mins: 100, drive: 0, vibe: ["hills","views"],
     name: "The moor and the trig point",
     type: "long",
     time: "About 1 hr 40 for the loop, 6.1 km",
@@ -314,7 +314,7 @@ const WALKS = [
   },
   {
     id: "willywood",
-    mins: 90, drive: 0, vibe: ["woods","water","hills"],
+    mins: 90, drive: 0, vibe: ["hills","woods","water"],
     name: "Willy Wood and Tong Park",
     type: "long",
     time: "About 1 hr 30 for the loop, 6.3 km",
@@ -389,7 +389,7 @@ const WALKS = [
   },
   {
     id: "ilkley",
-    mins: 200, drive: 0, vibe: ["views","hills"],
+    mins: 200, drive: 0, vibe: ["hills","views"],
     name: "Over the moor to Ilkley",
     type: "long",
     time: "Half a day. 12.5 km, three hours of walking",

@@ -533,8 +533,7 @@
   // ---------- week ----------
   (function(){
     const out = [];
-    const end = new Date(last); end.setDate(end.getDate()+1); // include the day they get home
-    for (let d = new Date(first); d <= end; d.setDate(d.getDate()+1)){
+    for (let d = new Date(first); d <= last; d.setDate(d.getDate()+1)){
       const k = iso(d); const evs = WEEK_EVENTS.filter(e => e.date === k);
       const isToday = k === todayKey;
       out.push(`<div class="card" ${isToday ? 'style="border-color:var(--heather);border-width:2px"' : ""}>
