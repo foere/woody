@@ -88,7 +88,7 @@ const WEEK_EVENTS = [
 
 const EVERY_DAY = [
   { time: "Morning",  what: "Back door open for Woody, then breakfast: 4 level scoops in the maze bowl." },
-  { time: "12:00",    what: "A chew for Woody (left cupboard, dining room)." },
+  { time: "12:00",    what: "A chew for Woody (dining room, left cupboard, right-hand side)." },
   { time: "18:00",    what: "Tea: 4 level scoops in the maze bowl." },
   { time: "Bedtime",  what: "Toilet trip, collar off, 'on your bed' with a treat, light off, door shut." },
   { time: "Any time", what: "The gardener may turn up. He knows the garden well, so there's nothing you need to do." },
@@ -100,7 +100,7 @@ const EVERY_DAY = [
 // ------------------------------------------------------------
 const WOODY = [
   { h: "Food",     p: "4 level scoops from the bin into his maze bowl, morning after his first toilet trip and again at 18:00. He'll cry for it early. He's absolutely fine to wait, so don't let him talk you into it." },
-  { h: "Chew",     p: "12:00, from the left cupboard in the dining room. A beef chew or similar." },
+  { h: "Chew",     p: "12:00, from the left cupboard in the dining room, right-hand side. A beef chew or similar." },
   { h: "Water",    p: "Normal tap water. Check the bowl a couple of times a day." },
   { h: "Leaving him", p: "If you're going out for more than an hour, walk him first. Lock the back door, shut the curtains, lights off if it's dark. Take a treat from the bag on the counter into the lounge, say 'on your bed', put the treat on the bed with him. Switch on the camera (on the fireplace), light off, door shut. When you're back, open the back door for him." },
   { h: "Bedtime",  p: "Any time from about 9. Back door open for a last wee, then the same 'on your bed' routine. Collar off before bed. If he cries in the night, ignore him (or let him stay on your bed I SUPPOSE)." },
