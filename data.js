@@ -485,7 +485,8 @@ const WALKS = [
 ];
 
 // ------------------------------------------------------------
-//  Places on the map. group: "need" (shops, fuel, vet) or "nice" (for you)
+//  Places on the map. group: "need" (shops and help), "nice" (treats for
+//  her) or "land" (landmarks the walks pass, there to read the map by)
 // ------------------------------------------------------------
 const PLACES = [
   { name: "Co-op", group: "need", at: [53.85427,-1.76515], note: "25 Northgate. 7am to 10pm, Sunday 10 to 4." },
@@ -499,12 +500,12 @@ const PLACES = [
   { name: "Otley Road fuel", group: "need", at: [53.83233,-1.77576], note: "Service station on Otley Road over the bridge, 24 hours." },
   { name: "Baildon station", group: "need", at: [53.85020,-1.75370], note: "Trains to Ilkley one way, Shipley and Bradford the other." },
   { name: "Crook Farm", group: "need", at: [53.85102,-1.79481], note: "Steph's mum and dad, up Glen Road." },
-  { name: "Cliffe Avenue Park", group: "nice", at: [53.84732,-1.77100], note: "The little park five minutes down the road. Start of the bank walk." },
-  { name: "Ferniehurst Dell", group: "nice", at: [53.84306,-1.76832], note: "Small wooded dell, eight minutes from the door." },
-  { name: "Bracken Hall Green", group: "nice", at: [53.84881,-1.80456], note: "Top of Shipley Glen. Countryside centre, open ground, dogs everywhere." },
+  { name: "Cliffe Avenue Park", group: "land", at: [53.84732,-1.77100], note: "The little park five minutes down the road. Start of the bank walk." },
+  { name: "Ferniehurst Dell", group: "land", at: [53.84306,-1.76832], note: "Small wooded dell, eight minutes from the door." },
+  { name: "Bracken Hall Green", group: "land", at: [53.84881,-1.80456], note: "Top of Shipley Glen. Countryside centre, open ground, dogs everywhere." },
   { name: "Shipley Glen Tramway", group: "nice", at: [53.84399,-1.79250], note: "Little funicular down to Saltaire. Weekends and school holidays. Dogs allowed." },
   { name: "Salts Mill", group: "nice", at: [53.83870,-1.78788], note: "Saltaire. Hockney gallery, a very good bookshop and cafe. Free." },
   { name: "Roberts Park", group: "nice", at: [53.84107,-1.79130], note: "Saltaire. Riverside park, bandstand, cafe. Flat." },
-  { name: "Baildon Moor trig point", group: "nice", at: [53.85670,-1.78675], note: "The top of everything round here. Big views on a clear day." },
+  { name: "Baildon Moor trig point", group: "land", at: [53.85670,-1.78675], note: "The top of everything round here. Big views on a clear day." },
   { name: "Ilkley", group: "nice", at: [53.92479,-1.82129], note: "Twenty minutes on the train from Baildon. Betty's, the Grove, the moor." },
 ];

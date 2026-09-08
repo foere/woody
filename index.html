@@ -215,8 +215,9 @@
   <div style="position:relative">
     <div class="maptools">
       <button class="chip on" data-layer="walks">Walks</button>
-      <button class="chip on" data-layer="need">Shops, fuel, vet</button>
+      <button class="chip on" data-layer="need">Shops &amp; vet</button>
       <button class="chip on" data-layer="nice">For you</button>
+      <button class="chip on" data-layer="land">Landmarks</button>
       <button class="chip" id="zoom-out">Days out</button>
       <button class="chip" id="zoom-home">Home</button>
       <button class="chip" id="clear-focus" hidden>Show all</button>
@@ -460,6 +461,7 @@
     layers.walks = L.layerGroup().addTo(map);
     layers.need = L.layerGroup().addTo(map);
     layers.nice = L.layerGroup().addTo(map);
+    layers.land = L.layerGroup().addTo(map);
 
     L.marker(CONFIG.home, { icon: roughPin("#D19A1E","H"), zIndexOffset:1000 }).addTo(map).bindPopup("<h3>Home</h3>Where the kettle is.");
 
@@ -487,7 +489,8 @@
     });
 
     PLACES.forEach(p => {
-      const colour = p.group === "need" ? "#4A7C96" : "#7A5C8A";
+      const colour = p.group === "need" ? "#4A7C96"
+                   : p.group === "land" ? "#5E7D4E" : "#7A5C8A";
       const pm = L.marker(p.at, { icon: roughDot(colour) }).addTo(layers[p.group])
         .bindPopup(`<h3>${esc(p.name)}</h3>${esc(p.note)}<br><a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=${p.at[0]},${p.at[1]}" target="_blank" rel="noopener">Directions</a>`)
         .bindTooltip(p.name, { permanent:true, direction:"right", offset:[7,0], className:"lab-tip" });
@@ -504,7 +507,8 @@
         if (!el) return;
         const far = el.classList.contains("lab-far");
         let show = far ? z >= 9 : z >= 14;
-        if (focused) show = show && ref.kind === "walk" && ref.id === focused;
+        if (focused === "days") show = show && ref.kind === "walk";
+        else if (focused) show = show && ref.kind === "walk" && ref.id === focused;
         else if (ref.kind === "place") show = show && map.hasLayer(layers[ref.id]);
         el.style.display = show ? "" : "none";
       });
@@ -560,20 +564,26 @@
     }));
     $("#clear-focus").addEventListener("click", () => { setFocus(null); goHome(); });
     $("#zoom-out").addEventListener("click", () => {
-      setFocus(null);
+      setFocus("days");
       const b = L.latLngBounds(WALKS.filter(w => w.type === "drive").map(w => w.route[0]).concat([CONFIG.home]));
-      map.fitBounds(b.pad(.15));
+      map.fitBounds(b.pad(.15), { animate: false });
+      syncLabels(); staggerLabels();
     });
     $("#zoom-home").addEventListener("click", () => { setFocus(null); goHome(); });
   }
   // Focus mode: one walk on its own. Pass null to put everything back.
+  // id: null for everything, a walk id for that walk alone, or "days" for the
+  // day outs on their own.
   function setFocus(id){
     focused = id;
+    const days = id === "days";
     Object.keys(walkLayers).forEach(wid => {
       const g = walkLayers[wid];
-      if (!id || wid === id) layers.walks.addLayer(g); else layers.walks.removeLayer(g);
+      const w = WALKS.find(x => x.id === wid);
+      const on = !id || (days ? w && w.type === "drive" : wid === id);
+      if (on) layers.walks.addLayer(g); else layers.walks.removeLayer(g);
     });
-    ["need","nice"].forEach(k => {
+    ["need","nice","land"].forEach(k => {
       const chip = $('.maptools .chip[data-layer="' + k + '"]');
       if (id){ if (map.hasLayer(layers[k])) map.removeLayer(layers[k]); chip.classList.remove("on"); }
       else { layers[k].addTo(map); chip.classList.add("on"); }
