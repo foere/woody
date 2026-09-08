@@ -117,6 +117,13 @@
   .suggest .lab{font-family:"Caveat",cursive; font-size:24px; font-weight:700; color:var(--tan); margin-top:10px}
   .suggest{border:2px solid var(--gorse); background:rgba(209,154,30,.12)}
   .suggest .tag{font-family:"Caveat",cursive; font-size:24px; color:var(--tan); font-weight:700}
+  .picker{border:2px dashed var(--pencil); border-radius:14px; padding:14px 16px 16px; margin:0 0 18px}
+  .picker .tag{font-family:"Caveat",cursive; font-size:24px; color:var(--tan); font-weight:700}
+  .picker h3{margin:2px 0 10px}
+  .picker .chips{margin:0}
+  .picker .chip{margin:0 8px 8px 0}
+  .picker .found{margin-top:12px; padding-top:12px; border-top:1.5px solid var(--paper-deep)}
+  .picker .found .why{color:var(--ink-soft); font-size:17px; margin:0 0 6px}
 
   /* ---------- Map ---------- */
   #map-page{padding:0; max-width:none}
@@ -200,6 +207,13 @@
 <section class="page" id="walks-page">
   <h1>Walks</h1>
   <p>Tap one to read it. Every walk says where to park if you'd rather drive to the start.</p>
+  <div class="picker" id="picker">
+    <div class="tag">Not sure?</div>
+    <h3 id="pick-q">I fancy a day out</h3>
+    <div class="chips" id="pick-opts"></div>
+    <div id="pick-result"></div>
+    <button class="btn" id="pick-restart" hidden>Start again</button>
+  </div>
   <div class="chips" id="walk-chips">
     <button class="chip on" data-f="all">All</button>
     <button class="chip" data-f="short">Short</button>
@@ -229,7 +243,7 @@
 <!-- ============ WOODY ============ -->
 <section class="page" id="woody-page">
   <h1>Woody</h1>
-  <p>You know dogs. This is just the house-specific stuff.</p>
+  <p>Fank you for looking after me Nanny. Dis is my routine.</p>
   <div id="woody-list"></div>
   <div class="card">
     <h3>Numbers</h3>
@@ -240,7 +254,7 @@
 <!-- ============ WEEK ============ -->
 <section class="page" id="week-page">
   <h1>The week</h1>
-  <p>The only thing with a fixed time is the cleaners on Wednesday morning. Everything else is whenever suits.</p>
+  <p>Two things have a fixed time: the cleaners on Wednesday morning, and Woody's dog bus at 10:40 on Thursday. Everything else is whenever suits.</p>
   <div id="week-list"></div>
   <div class="card">
     <h3>Every day</h3>
@@ -354,6 +368,134 @@
     const art = b.parentElement; const open = art.classList.toggle("open");
     b.setAttribute("aria-expanded", open);
   });
+  // ---------- help me choose ----------
+  // A fixed set of questions, not a chatbot: it runs offline, answers the
+  // instant she taps, and can only ever hand back one of these walks.
+  const PICK = {
+    start: {
+      q: "What do you fancy?",
+      opts: [
+        { label: "A quick one from the door", next: "quicklen", set: { drive: 0 } },
+        { label: "A proper walk",             next: "walkvibe", set: { min: 35 } },
+        { label: "A day out in the car",      next: "dayvibe",  set: { drivewalk: true } },
+      ],
+    },
+    // No vibe question here: from the door and under an hour, there are only
+    // three walks, and pretending to choose between them on character would
+    // send her out expecting woods and hand her a pavement loop.
+    quicklen: {
+      q: "How long have you got?",
+      opts: [
+        { label: "Twenty minutes", next: null, set: { max: 22 } },
+        { label: "Half an hour",   next: null, set: { max: 35 } },
+        { label: "An hour",        next: null, set: { max: 65 } },
+      ],
+    },
+    walkvibe: {
+      q: "What sort of walk?",
+      opts: [
+        { label: "Flat and easy",   next: "walklen", set: { vibe: ["easy","flat","pavement"] } },
+        { label: "Hills and views", next: "walklen", set: { vibe: ["views","hills"] } },
+        { label: "By the water",    next: "walklen", set: { vibe: ["water"] } },
+        { label: "Under the trees", next: "walklen", set: { vibe: ["woods"] } },
+      ],
+    },
+    walklen: {
+      q: "How long have you got?",
+      opts: [
+        { label: "About an hour",       next: null, set: { max: 70 } },
+        { label: "An hour and a half",  next: null, set: { max: 105 } },
+        { label: "As long as it takes", next: null, set: {} },
+      ],
+    },
+    dayvibe: {
+      q: "What sort of day?",
+      opts: [
+        { label: "Shops, cafes and a wander", next: "daydrive", set: { vibe: ["shops","easy"] } },
+        { label: "Big views and fresh air",   next: "daydrive", set: { vibe: ["views"] } },
+        { label: "Rivers and waterfalls",     next: "daydrive", set: { vibe: ["water"] } },
+        { label: "A bit of history",          next: "daydrive", set: { vibe: ["history"] } },
+      ],
+    },
+    daydrive: {
+      q: "How far are you willing to drive?",
+      opts: [
+        { label: "Half an hour",  next: null, set: { maxdrive: 35 } },
+        { label: "Up to an hour", next: null, set: { maxdrive: 60 } },
+        { label: "However far",   next: null, set: {} },
+      ],
+    },
+  };
+
+  let pick = {};
+  function pickShow(step){
+    const s = PICK[step];
+    $("#pick-q").textContent = s.q;
+    $("#pick-result").innerHTML = "";
+    $("#pick-restart").hidden = step === "start";
+    $("#pick-opts").innerHTML = s.opts
+      .map((o, i) => `<button class="chip" data-pick="${i}" data-step="${step}">${esc(o.label)}</button>`)
+      .join("");
+  }
+  function pickResult(){
+    let pool = WALKS.filter(w => pick.drivewalk ? w.type === "drive" : w.type !== "drive");
+    if (pick.drive === 0)    pool = pool.filter(w => (w.drive || 0) === 0);
+    if (pick.maxdrive)       pool = pool.filter(w => (w.drive || 0) <= pick.maxdrive);
+    if (pick.max)            pool = pool.filter(w => (w.mins || 0) <= pick.max);
+    if (pick.min)            pool = pool.filter(w => (w.mins || 0) >= pick.min);
+    let loose = false;
+    if (!pool.length){       // nothing fits: drop the time limit before giving up
+      loose = true;
+      pool = WALKS.filter(w => pick.drivewalk ? w.type === "drive" : w.type !== "drive");
+      if (pick.maxdrive) pool = pool.filter(w => (w.drive || 0) <= pick.maxdrive);
+    }
+    const want = pick.vibe || [];
+    const score = w => (w.vibe || []).filter(v => want.includes(v)).length;
+    pool = pool.slice().sort((a, b) =>
+      // Best character first; then the nearest one, because a shorter drive
+      // wins a tie; then, if she gave us a time, the longest walk that fits,
+      // since she asked for that much of a walk and may as well have it.
+      score(b) - score(a)
+      || (a.drive || 0) - (b.drive || 0)
+      || (pick.max ? (b.mins || 0) - (a.mins || 0) : (a.mins || 0) - (b.mins || 0)));
+    const best = pool[0];
+    if (!best){
+      $("#pick-result").innerHTML = `<div class="found"><p class="why">Nothing quite fits that. Have a look through the list below.</p></div>`;
+      $("#pick-opts").innerHTML = ""; $("#pick-q").textContent = "Hmm";
+      return;
+    }
+    const why = loose ? "Nothing matched exactly, so here's the closest."
+      : score(best) ? "This one should suit." : "The nearest thing to it.";
+    $("#pick-q").textContent = "How about this?";
+    $("#pick-opts").innerHTML = "";
+    $("#pick-result").innerHTML = `<div class="found">
+      <p class="why">${esc(why)}</p>
+      <h3>${esc(best.name)}</h3>
+      <div class="meta">${esc(best.time)}</div>
+      <p style="margin-top:6px">${esc(best.summary)}</p>
+      <button class="btn" data-goto-walk="${best.id}">Read it</button><button class="btn" data-goto-map="${best.id}">See it on the map</button>
+    </div>`;
+  }
+  $("#picker").addEventListener("click", e => {
+    const b = e.target.closest("[data-pick]");
+    if (b){
+      const step = PICK[b.dataset.step];
+      const o = step.opts[+b.dataset.pick];
+      Object.entries(o.set).forEach(([k, v]) => {
+        // Later answers tighten, never loosen: "quick from the door" then
+        // "an hour" must not quietly become an hour-long walk.
+        if ((k === "max" || k === "maxdrive") && typeof pick[k] === "number") {
+          pick[k] = Math.min(pick[k], v);
+        } else pick[k] = v;
+      });
+      if (o.next) pickShow(o.next); else pickResult();
+      $("#pick-restart").hidden = false;
+      return;
+    }
+    if (e.target.closest("#pick-restart")){ pick = {}; pickShow("start"); }
+  });
+  pickShow("start");
+
   $("#walk-chips").addEventListener("click", e => {
     const c = e.target.closest(".chip"); if (!c) return;
     $$("#walk-chips .chip").forEach(x => x.classList.toggle("on", x === c));

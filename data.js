@@ -85,7 +85,7 @@ const EVERY_DAY = [
   { time: "12:00",    what: "A chew for Woody (left cupboard, dining room)." },
   { time: "18:00",    what: "Tea: 4 level scoops in the maze bowl." },
   { time: "Bedtime",  what: "Toilet trip, collar off, 'on your bed' with a treat, light off, door shut." },
-  { time: "Any time", what: "Gardener may turn up. He knows what he's doing, leave him to it." },
+  { time: "Any time", what: "The gardener may turn up. He knows the garden well, so there's nothing you need to do." },
   { time: "Every other day", what: "Plants: a splash of water for the ones that look thirsty." },
 ];
 
@@ -93,15 +93,15 @@ const EVERY_DAY = [
 //  Woody tab
 // ------------------------------------------------------------
 const WOODY = [
-  { h: "Food",     p: "4 level scoops from the bin into his maze bowl, morning after his first toilet trip and again at 18:00. He will cry for it early. Ignore him, he needs to learn patience." },
+  { h: "Food",     p: "4 level scoops from the bin into his maze bowl, morning after his first toilet trip and again at 18:00. He'll cry for it early. He's absolutely fine to wait, so don't let him talk you into it." },
   { h: "Chew",     p: "12:00, from the left cupboard in the dining room. A beef chew or similar." },
   { h: "Water",    p: "Normal tap water. Check the bowl a couple of times a day." },
   { h: "Leaving him", p: "If you're going out for more than an hour, walk him first. Lock the back door, shut the curtains, lights off if it's dark. Take a treat from the bag on the counter into the lounge, say 'on your bed', put the treat on the bed with him. Switch on the camera (on the fireplace), light off, door shut. When you're back, open the back door for him." },
   { h: "Bedtime",  p: "Any time from about 9. Back door open for a last wee, then the same 'on your bed' routine. Collar off before bed. If he cries in the night, ignore him (or let him stay on your bed I SUPPOSE)." },
   { h: "Walks",    p: "Extendy lead for walks where you're not planning to let him off, short lead otherwise. Both in the cupboard. Poo bags by the door. He's fine off the lead on the moor and in the woods etc." },
-  { h: "Dog bus",  p: "Thursday, 10:40, Berry Drive in the motorbike showroom car park. Collar and short lead. He knows the drill better than you will." },
+  { h: "Dog bus",  p: "Thursday, 10:40, Berry Drive in the motorbike showroom car park. Collar and short lead on. He's done it before and he'll be beside himself, so just follow him." },
   { h: "In the car", p: "Collar and short lead on and he's fine. If you ever need the vet, they're on Berry Drive, five minutes away, number below." },
-  { h: "Barking",  p: "He barks when he goes out the back. It's mostly announcement, not alarm. Ignore it." },
+  { h: "Barking",  p: "He barks when he goes out the back. It's announcement rather than alarm, so nothing to worry about." },
 ];
 
 // ------------------------------------------------------------
@@ -112,13 +112,14 @@ const WOODY = [
 const WALKS = [
   {
     id: "block",
+    mins: 20, drive: 0, vibe: ["easy","pavement"],
     name: "Round the block",
     type: "short",
     time: "20 min, all pavement",
     from: "Home",
     fromHome: "Out of the door and left. You're back before the kettle's cold.",
     summary: "The quick trot: up Green Road, round by Cliffe Avenue and back along Sandals Road.",
-    detail: "The shortest one there is. Left up Baildon Road onto Green Road, round the back streets to Cliffe Avenue, then Glenholm Road and Sandals Road bring you back to the door. For last thing at night, or when it's raining and neither of you can face anything more.",
+    detail: "The shortest one there is. Left up Baildon Road onto Green Road, round the back streets to Cliffe Avenue, then Glenholm Road and Sandals Road bring you back to the door. Lovely last thing at night, or when the weather's against you.",
     woody: "Lead on, it's all streets.",
     parking: "No need.",
     route: [
@@ -133,6 +134,7 @@ const WALKS = [
   },
   {
     id: "village",
+    mins: 40, drive: 0, vibe: ["easy","pavement","shops"],
     name: "Up to the village",
     type: "short",
     time: "20 min each way",
@@ -152,6 +154,7 @@ const WALKS = [
   },
   {
     id: "dell",
+    mins: 25, drive: 0, vibe: ["easy","pavement"],
     name: "Round Ferniehurst",
     type: "short",
     time: "25 min, all pavement",
@@ -159,7 +162,7 @@ const WALKS = [
     fromHome: "Starts at the door. Down Baildon Road and left into Cliffe Avenue.",
     summary: "The quick one for a wet evening or a last wee. A loop round the streets and back.",
     detail: "All pavement and no hills to speak of. Down Cliffe Avenue, round Glenholm Road and Enfield Road, along Temple Rhydding Drive, then back up Maude Avenue onto Baildon Road and home. Nothing to it, which is the point when it's dark and raining.",
-    woody: "Lead on the whole way, it's streets.",
+    woody: "Lead on the whole way, it's all streets.",
     parking: "No need.",
     route: [
       [53.84918,-1.7674],[53.84824,-1.76934],[53.84768,-1.77006],[53.84786,-1.77071],
@@ -172,6 +175,7 @@ const WALKS = [
   },
   {
     id: "glen",
+    mins: 15, drive: 8, vibe: ["easy","views"],
     name: "Shipley Glen, the short loop",
     type: "short",
     time: "15 min round the loop",
@@ -190,6 +194,7 @@ const WALKS = [
   },
   {
     id: "glenhome",
+    mins: 120, drive: 0, vibe: ["views","hills","woods"],
     name: "The Glen and back, on foot",
     type: "long",
     time: "About two hours, 9.8 km",
@@ -223,6 +228,7 @@ const WALKS = [
   },
   {
     id: "trig",
+    mins: 100, drive: 0, vibe: ["views","hills"],
     name: "The moor and the trig point",
     type: "long",
     time: "About 1 hr 40 for the loop, 6.1 km",
@@ -255,6 +261,7 @@ const WALKS = [
   },
   {
     id: "canal",
+    mins: 40, drive: 8, vibe: ["easy","flat","water"],
     name: "The canal, short loop",
     type: "medium",
     time: "40 min, flat, 3 km",
@@ -279,6 +286,7 @@ const WALKS = [
   },
   {
     id: "canalfull",
+    mins: 60, drive: 8, vibe: ["easy","flat","water","shops"],
     name: "The canal, long loop",
     type: "medium",
     time: "About an hour, flat, 4.6 km",
@@ -306,6 +314,7 @@ const WALKS = [
   },
   {
     id: "willywood",
+    mins: 90, drive: 0, vibe: ["woods","water","hills"],
     name: "Willy Wood and Tong Park",
     type: "long",
     time: "About 1 hr 30 for the loop, 6.3 km",
@@ -338,6 +347,7 @@ const WALKS = [
   },
   {
     id: "saltaire",
+    mins: 90, drive: 0, vibe: ["shops","water","history","views"],
     name: "Down to Saltaire",
     type: "long",
     time: "About 50 min there, 4.9 km",
@@ -379,6 +389,7 @@ const WALKS = [
   },
   {
     id: "ilkley",
+    mins: 200, drive: 0, vibe: ["views","hills"],
     name: "Over the moor to Ilkley",
     type: "long",
     time: "Half a day. 12.5 km, three hours of walking",
@@ -419,6 +430,7 @@ const WALKS = [
   // ---- Days out, all within about 1.5 hours ----
   {
     id: "bolton",
+    mins: 150, drive: 35, vibe: ["water","history","views","easy"],
     name: "Bolton Abbey",
     type: "drive",
     time: "35 min drive",
@@ -432,6 +444,7 @@ const WALKS = [
   },
   {
     id: "brimham",
+    mins: 150, drive: 60, vibe: ["views","easy"],
     name: "Brimham Rocks",
     type: "drive",
     time: "About an hour's drive",
@@ -439,12 +452,13 @@ const WALKS = [
     fromHome: "About an hour in the car, out past Ilkley and over towards Nidderdale. National Trust car park at the end of it, a few pounds if you're not a member.",
     summary: "Enormous weather-carved rocks on a moortop with paths all around them. Easy walking, big views.",
     detail: "National Trust car park, a few pounds if you're not a member. Paths wander between the rocks and out to the edge for the view over Nidderdale. A couple of hours is plenty. Kiosk cafe at the top.",
-    woody: "Lead on, it's the rule there and there are drops.",
+    woody: "Lead on, it's the rule there and there are some drops.",
     route: [[54.07570,-1.67350]],
     end: "Brimham Rocks",
   },
   {
     id: "grassington",
+    mins: 150, drive: 55, vibe: ["shops","water","easy"],
     name: "Grassington and Linton Falls",
     type: "drive",
     time: "About 55 min drive",
@@ -458,19 +472,21 @@ const WALKS = [
   },
   {
     id: "ingleton",
+    mins: 210, drive: 75, vibe: ["water","views","hills"],
     name: "Ingleton Waterfalls Trail",
     type: "drive",
     time: "About 1 hr 15 drive",
     from: "Ingleton, LA6 3ET",
-    fromHome: "About an hour and a quarter in the car, the furthest of the lot, so make a whole day of it or leave it. Parking is included in the entry.",
+    fromHome: "About an hour and a quarter in the car, the furthest of the lot, so it's worth making a whole day of it. Parking is included in the entry.",
     summary: "The full day out: a 4.5 mile circuit past a string of waterfalls in two wooded gorges. Paid entry, worth every penny.",
     detail: "Entry is about fifteen pounds and includes parking. The trail is well made but has a lot of steps; allow three hours with stops. Take the anticlockwise route (Pecca Falls first). Cafe at the top and the bottom.",
-    woody: "Lead on the whole way, it's steep and busy.",
+    woody: "Lead on the whole way. It's steep in places and it gets busy.",
     route: [[54.15330,-2.46770]],
     end: "Ingleton",
   },
   {
     id: "hebden",
+    mins: 150, drive: 40, vibe: ["shops","water","history","easy"],
     name: "Hebden Bridge",
     type: "drive",
     time: "About 40 min drive",
@@ -484,6 +500,7 @@ const WALKS = [
   },
   {
     id: "haworth",
+    mins: 120, drive: 30, vibe: ["shops","history","views"],
     name: "Haworth",
     type: "drive",
     time: "30 min drive",
