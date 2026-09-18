@@ -180,7 +180,7 @@ const HOUSE = [
       "Turn the dial to Cotton: three clicks clockwise from OFF.",
       "Press the play/pause button to start it.",
     ],
-    tip: "It usually needs two runs to get everything properly dry. It's a condenser dryer, so if it stops early and the water tank light is on (top left of the little display), the tank is full and needs emptying before it will carry on.",
+    tip: "It usually needs two runs to get everything properly dry. It's a condenser dryer, so if it stops early and the water tank light is on (top left of the little display), the tank is full. It's in the door: pull it out, empty it down the sink and slide it back in. If it doesn't start again by itself, press play/pause.",
   },
 ];
 
