@@ -259,7 +259,7 @@
 <!-- ============ HOUSE ============ -->
 <section class="page" id="house-page">
   <h1>The house</h1>
-  <p>How the things work. Nothing here needs doing, it's just for when you want it.</p>
+  <p>How the things work. Nothing here needs doing, it's just for when you want it. Tap a photo to see it bigger.</p>
   <div id="house-list"></div>
 </section>
 
@@ -544,7 +544,7 @@
   // ---------- house ----------
   $("#house-list").innerHTML = HOUSE.map(x => `<article class="card house-item">
       <h3>${esc(x.h)}</h3>
-      ${x.img ? `<img src="${esc(x.img)}" alt="${esc(x.h)}" loading="lazy">` : ""}
+      ${x.img ? `<a href="${esc(x.img)}" target="_blank" rel="noopener"><img src="${esc(x.img)}" alt="${esc(x.h)}" loading="lazy"></a>` : ""}
       ${x.p ? `<p>${esc(x.p)}</p>` : ""}
       ${x.steps ? `<ol>${x.steps.map(t => `<li>${esc(t)}</li>`).join("")}</ol>` : ""}
       ${x.tip ? `<p class="meta">${esc(x.tip)}</p>` : ""}

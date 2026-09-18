@@ -1,2 +1,6 @@
 woody-week.zip
 .DS_Store
+# Phone originals carry GPS for the house. Only the cleaned copies are published.
+house/IMG_*
+house/*.jpeg
+house/*.heic
