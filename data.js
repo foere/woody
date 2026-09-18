@@ -125,14 +125,14 @@ const HOUSE = [
     img: "house/tv-remote.jpg",
     p: "It's Virgin Media, and this one remote does everything.",
     steps: [
-      "The red button, top right, turns the Virgin box on and off. If the screen stays black, press the TV button top left as well: that one is the television itself.",
-      "The easiest way to find anything: hold down the microphone button in the middle, say what you want, like \"BBC One\" or \"Coronation Street\", and let go.",
+      "The red button at the very top right turns the Virgin box on and off. If the screen stays black, press the TV button at the very top left as well: that one is the television itself.",
+      "To find something to watch, press Guide. It's just above the big circle, on the left. Move about with the ring and press OK to watch.",
       "Or type the channel number: BBC One 101, BBC Two 102, ITV 103, Channel 4 104, Channel 5 105. The rocker on the right goes up and down the channels.",
       "Volume is the rocker on the left. Mute is at the bottom left of the numbers.",
       "The play/pause button, just under the red dot, pauses live TV. Press it again to carry on from where you left it.",
       "The house button near the top is Home, for iPlayer, ITVX, Netflix and anything recorded.",
     ],
-    tip: "If you get lost in a menu, the curved arrow just below the big circle, on the left, is Back. Press it a few times, or press Home, and start again. Nothing you press will break it.",
+    tip: "If you get lost in a menu, the TV button just above the big circle, on the right, takes you straight back to live telly. The curved arrow below the circle, on the left, goes back one step at a time. Nothing you press will break it.",
   },
   {
     h: "Dishwasher",
