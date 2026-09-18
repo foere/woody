@@ -38,7 +38,10 @@ The PIN is a deterrent, not security: don't put the alarm code or WiFi password 
   by default (eleven routes at once was a thicket of start pins); pick one in
   the Walks tab and "See it on the map" puts that one on, with Back to clear.
   "Days out" swaps to the day trips on their own.
-- Woody: the house-specific bits from the user guide, nothing else.
+- Woody: his routine, in his own voice.
+- House: how the TV, dishwasher, washer, dryer, microwave and air fryer
+  work, and the coffee card. Edit `HOUSE` in `data.js`; photos go in `house/`
+  and are named in each item's `img`.
 - Week: day by day, with today highlighted, plus the every-day routine.
 
 Fonts come from Google Fonts and the map base from OpenStreetMap, so it needs internet, but so does she.

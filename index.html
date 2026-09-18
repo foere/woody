@@ -117,6 +117,10 @@
   .suggest .lab{font-family:"Caveat",cursive; font-size:24px; font-weight:700; color:var(--tan); margin-top:10px}
   .suggest{border:2px solid var(--gorse); background:rgba(209,154,30,.12)}
   .suggest .tag{font-family:"Caveat",cursive; font-size:24px; color:var(--tan); font-weight:700}
+  .house-item img{display:block; width:100%; height:auto; border-radius:10px; margin:10px 0 12px; border:1.5px solid var(--paper-deep)}
+  .house-item ol{margin:6px 0 10px; padding-left:24px}
+  .house-item li{margin:0 0 6px}
+  .house-item .meta{color:var(--ink-soft); font-size:17px; margin:4px 0 0}
   .picker{border:2px dashed var(--pencil); border-radius:14px; padding:14px 16px 16px; margin:0 0 18px}
   .picker .tag{font-family:"Caveat",cursive; font-size:24px; color:var(--tan); font-weight:700}
   .picker h3{margin:2px 0 10px}
@@ -252,6 +256,13 @@
   </div>
 </section>
 
+<!-- ============ HOUSE ============ -->
+<section class="page" id="house-page">
+  <h1>The house</h1>
+  <p>How the things work. Nothing here needs doing, it's just for when you want it.</p>
+  <div id="house-list"></div>
+</section>
+
 <!-- ============ WEEK ============ -->
 <section class="page" id="week-page">
   <h1>The week</h1>
@@ -268,6 +279,7 @@
   <button class="tab" data-page="walks"><svg viewBox="0 0 24 24"><path d="M4 19.5c3-1 4-3.5 3-6s0-4.5 3-5.5 5-2.5 5-5" stroke-dasharray="2.5 2.5"/><path d="M18 3.5c1.7 0 3 1.3 3 3 0 2.3-3 5.5-3 5.5s-3-3.2-3-5.5c0-1.7 1.3-3 3-3z"/><circle cx="18" cy="6.5" r="1"/></svg><span>Walks</span></button>
   <button class="tab" data-page="map"><svg viewBox="0 0 24 24"><path d="M3.5 6.5l5.5-2 6 2.5 5.5-2v13l-5.5 2-6-2.5-5.5 2z"/><path d="M9 4.5v13M15 7v13"/></svg><span>Map</span></button>
   <button class="tab" data-page="woody"><svg viewBox="0 0 24 24"><path d="M4 13c0-2.5 1.5-4 4-4h7c2.5 0 4 1.5 4.5 3.5l.5 3.5H4z"/><path d="M6.5 16v3.5M17 16v3.5M15 9c0-2 1-3.5 2.5-3.5s2 1.5 2 3M4 13c-1 0-1.5-1-1.5-2"/></svg><span>Woody</span></button>
+  <button class="tab" data-page="house"><svg viewBox="0 0 24 24"><path d="M3.5 11.5L12 4.5l8.5 7"/><path d="M6 10v10h12V10"/><path d="M10 20v-5.5h4V20"/></svg><span>House</span></button>
   <button class="tab" data-page="week"><svg viewBox="0 0 24 24"><path d="M4 6.5h16v13.5H4zM4 10.5h16M8 4v4M16 4v4"/><path d="M8 14.5l2 2 3.5-3.5"/></svg><span>Week</span></button>
 </nav>
 
@@ -528,6 +540,15 @@
 
   // ---------- woody ----------
   $("#woody-list").innerHTML = WOODY.map(s => `<div class="card"><h3>${esc(s.h)}</h3><p style="margin:0">${esc(s.p)}</p></div>`).join("");
+
+  // ---------- house ----------
+  $("#house-list").innerHTML = HOUSE.map(x => `<article class="card house-item">
+      <h3>${esc(x.h)}</h3>
+      ${x.img ? `<img src="${esc(x.img)}" alt="${esc(x.h)}" loading="lazy">` : ""}
+      ${x.p ? `<p>${esc(x.p)}</p>` : ""}
+      ${x.steps ? `<ol>${x.steps.map(t => `<li>${esc(t)}</li>`).join("")}</ol>` : ""}
+      ${x.tip ? `<p class="meta">${esc(x.tip)}</p>` : ""}
+    </article>`).join("");
 
   // ---------- week ----------
   (function(){

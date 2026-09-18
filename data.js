@@ -111,6 +111,77 @@ const WOODY = [
 ];
 
 // ------------------------------------------------------------
+//  House tab: how the things work. `img` is a photo in house/, optional.
+//  `steps` becomes a numbered list; `tip` sits underneath in grey.
+// ------------------------------------------------------------
+const HOUSE = [
+  {
+    h: "Coffee at Four Corners",
+    img: "",
+    p: "We've paid for ten drinks at Four Corners for you. Take the card with you and they'll stamp one of the initialled circles each time. Whatever's left when you go, we'll use when we're back, so there's no need to get through them.",
+  },
+  {
+    h: "The TV",
+    img: "",
+    p: "It's Virgin Media, and the one remote does most of it.",
+    steps: [
+      "On and off: the power button at the top. If the screen stays black, the TV itself may be off, so try its own power button.",
+      "To find something to watch, press Guide, move about with the arrows, and press OK.",
+      "Or just type the channel number: BBC One 101, BBC Two 102, ITV 103, Channel 4 104, Channel 5 105.",
+      "You can pause live TV with the pause button, and press play to carry on from where you left it.",
+      "Home takes you to the menu, where iPlayer, ITVX and Netflix are.",
+    ],
+    tip: "If you get lost in a menu, press Back a few times, or Home, and start again. Nothing you press will break it.",
+  },
+  {
+    h: "Dishwasher",
+    img: "",
+    steps: [
+      "Tablet in the little compartment in the door.",
+      "Switch it on.",
+      "Choose the 70 degree setting.",
+      "Press start.",
+    ],
+  },
+  {
+    h: "Microwave",
+    img: "",
+    p: "Nothing unusual about it. Door shut, set the time, start.",
+  },
+  {
+    h: "Air fryer",
+    img: "",
+    p: "It works like a small fan oven with a drawer.",
+    steps: [
+      "Pull the basket out by the handle and put the food in. Keep it to one layer if you can: spread out it crisps, heaped up it steams.",
+      "Slide it back in until it clicks.",
+      "Set the temperature and the time, and start it.",
+      "For chips and the like, pull the basket out halfway through, give it a shake, and slide it back.",
+      "It beeps when it's done. The basket gets very hot, so hold it by the handle only.",
+    ],
+    tip: "Rough times, but check the packet: frozen chips at 200 for 15 to 20 minutes, a chicken breast at 180 for about 20, leftovers warmed through at 180 for 4 or 5.",
+  },
+  {
+    h: "Washing machine",
+    img: "",
+    p: "The Ecover liquid and the softener are in the basket on top of the machine.",
+    steps: [
+      "Turn the dial to the third setting from the top, going round clockwise.",
+      "Press start.",
+    ],
+  },
+  {
+    h: "Tumble dryer",
+    img: "",
+    steps: [
+      "Turn it to Cotton.",
+      "Press start.",
+    ],
+    tip: "It usually needs two runs to get everything properly dry.",
+  },
+];
+
+// ------------------------------------------------------------
 //  Walks. type: "short" (under 30 min), "medium" (30 to 60), "long" (over an hour), "drive" (day out)
 //  route: real walking routes from OpenStreetMap. Times are walking only,
 //  one way unless it says otherwise, and don't count stops or dawdling.
